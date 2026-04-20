@@ -1,4 +1,4 @@
-// Rymdle - Production Ready (FIXED Card Layout + Flip)
+// Rymdle - Production Ready (UX Improvements: Share Feedback + Fixed Flip + Album Persistence)
 
 "use client";
 
@@ -58,6 +58,7 @@ export default function Page() {
   const [countdown, setCountdown] = useState("");
   const [results, setResults] = useState<boolean[]>([]);
   const [locked, setLocked] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const playKey = `rym_${DAILY_ID}`;
   const saveKey = `rym_save_${DAILY_ID}`;
@@ -109,8 +110,13 @@ export default function Page() {
 
   const buildEmojiGrid = () => results.map((r) => (r ? "🟩" : "🟥")).join("");
 
-  const share = () => {
-    navigator.clipboard.writeText(`Rymdle ${DAILY_ID} ${score}/5\n${buildEmojiGrid()}`);
+  const share = async () => {
+    await navigator.clipboard.writeText(
+      `Rymdle ${DAILY_ID} ${score}/5\n${buildEmojiGrid()}\nhttps://rymdle.vercel.app`
+    );
+
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
   };
 
   if (finished) {
@@ -118,7 +124,9 @@ export default function Page() {
       <main className="flex flex-col items-center justify-center min-h-screen p-6 text-center gap-4">
         <h1 className="text-2xl font-bold">Rymdle</h1>
         <p className="text-xl">{score}/5</p>
-        <button onClick={share} className="w-full max-w-xs py-3 bg-black text-white rounded-xl">Share</button>
+        <button onClick={share} className="w-full max-w-xs py-3 bg-black text-white rounded-xl">
+          {copied ? "Copied!" : "Share"}
+        </button>
         <pre className="text-sm">{buildEmojiGrid()}</pre>
         <p className="text-sm text-gray-500">Next puzzle in {countdown}</p>
       </main>
@@ -147,7 +155,7 @@ export default function Page() {
             >
               <motion.div
                 animate={{ rotateX: revealed ? 180 : 0 }}
-                transition={{ duration: 0.4, delay: i * 0.15 }}
+                transition={{ duration: 0.45 }}
                 className="relative w-full h-full"
                 style={{ transformStyle: "preserve-3d" }}
               >
@@ -170,7 +178,11 @@ export default function Page() {
                   }`}
                   style={{ transform: "rotateX(180deg)", backfaceVisibility: "hidden" }}
                 >
-                  <p className="text-sm">{album.rating}</p>
+                  <div className="text-center">
+                    <p className="text-sm font-semibold">{album.title}</p>
+                    <p className="text-xs opacity-80">{album.artist}</p>
+                    <p className="text-sm mt-1">{album.rating}</p>
+                  </div>
                 </div>
               </motion.div>
             </motion.button>
