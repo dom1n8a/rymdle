@@ -7,22 +7,31 @@ import { motion } from "framer-motion";
 
 const DAILY_ID = "2026-04-21";
 
+type Album = {
+  title: string;
+  artist: string;
+  rating: number;
+  cover: string;
+};
+
 const DAILY_ALBUMS = [
-  { title: "OK Computer", artist: "Radiohead", rating: 4.23, cover: "https://e.snmc.io/i/600/w/91f41d53d83f36ac3bb0cee7d6dffca3/11993756/radiohead-ok-computer-Cover-Art.jpg" },
+  { title: "OK Computer", artist: "Radiohead", rating: 4.30, cover: "https://e.snmc.io/i/600/w/91f41d53d83f36ac3bb0cee7d6dffca3/11993756/radiohead-ok-computer-Cover-Art.jpg" },
   { title: "To Pimp a Butterfly", artist: "Kendrick Lamar", rating: 4.38, cover: "https://e.snmc.io/i/600/w/a47f7eef08776272f5525d5a1f7c9c6a/8121875/kendrick-lamar-to-pimp-a-butterfly-Cover-Art.jpg" },
-  { title: "Abbey Road", artist: "The Beatles", rating: 4.27, cover: "https://i.imgur.com/3.jpg" },
-  { title: "The Dark Side of the Moon", artist: "Pink Floyd", rating: 4.30, cover: "https://i.imgur.com/4.jpg" },
-  { title: "Blonde", artist: "Frank Ocean", rating: 4.10, cover: "https://i.imgur.com/5.jpg" },
-  { title: "Madvillainy", artist: "Madvillain", rating: 4.37, cover: "https://i.imgur.com/6.jpg" },
-  { title: "In Rainbows", artist: "Radiohead", rating: 4.24, cover: "https://i.imgur.com/7.jpg" },
-  { title: "Discovery", artist: "Daft Punk", rating: 4.12, cover: "https://i.imgur.com/8.jpg" },
-  { title: "Loveless", artist: "My Bloody Valentine", rating: 4.23, cover: "https://i.imgur.com/9.jpg" },
-  { title: "Kid A", artist: "Radiohead", rating: 4.23, cover: "https://i.imgur.com/10.jpg" },
+  { title: "Abbey Road", artist: "The Beatles", rating: 4.30, cover: "https://e.snmc.io/i/600/w/b7d49832f4958688cd82b6dbb9f4dd31/12188855/the-beatles-abbey-road-Cover-Art.jpg" },
+  { title: "The Dark Side of the Moon", artist: "Pink Floyd", rating: 4.27, cover: "https://e.snmc.io/i/600/w/b87ea178beaaaf0e0e4a39aaf9d1b834/12206378/pink-floyd-the-dark-side-of-the-moon-Cover-Art.jpg" },
+  { title: "Blonde", artist: "Frank Ocean", rating: 4.09, cover: "https://e.snmc.io/i/600/w/3bc698315ea2ed723fe714b7dd1f84af/8060362/frank-ocean-blonde-Cover-Art.jpg" },
+  { title: "Madvillainy", artist: "Madvillain", rating: 4.33, cover: "https://e.snmc.io/i/600/w/9c52ece824b06220dd56f69119aa5739/13200445/madvillain-madvillainy-Cover-Art.jpg" },
+  { title: "In Rainbows", artist: "Radiohead", rating: 4.33, cover: "https://e.snmc.io/i/600/w/fadce3351784e528a8257b7c78f0b55a/14126517/radiohead-in-rainbows-Cover-Art.jpg" },
+  { title: "Loveless", artist: "My Bloody Valentine", rating: 4.25, cover: "https://e.snmc.io/i/600/w/47da1d4284997ca321af967068f34d7b/11569981/my-bloody-valentine-loveless-Cover-Art.jpg" },
+  { title: "Discovery", artist: "Daft Punk", rating: 4.14, cover: "https://e.snmc.io/i/600/w/f257109d44300506428e21138338e884/13215963/daft-punk-discovery-Cover-Art.jpg" },
+  { title: "Kid A", artist: "Radiohead", rating: 4.25, cover: "https://e.snmc.io/i/600/w/076215c80b1810341e978bbdbf47af69/12580450/radiohead-kid-a-Cover-Art.jpg" },
 ];
 
-function makePairs(albums) {
-  const p = [];
-  for (let i = 0; i < 10; i += 2) p.push([albums[i], albums[i + 1]]);
+function makePairs(albums: Album[]): [Album, Album][] {
+  const p: [Album, Album][] = [];
+  for (let i = 0; i < 10; i += 2) {
+    p.push([albums[i], albums[i + 1]]);
+  }
   return p;
 }
 
@@ -31,7 +40,7 @@ function getCountdown() {
   const nz = new Date(now.toLocaleString("en-US", { timeZone: "Pacific/Auckland" }));
   const next = new Date(nz);
   next.setHours(24, 0, 0, 0);
-  const diff = next - nz;
+  const diff = next.getTime() - nz.getTime();
 
   const h = Math.floor(diff / 3600000);
   const m = Math.floor((diff % 3600000) / 60000);
@@ -47,7 +56,7 @@ export default function Page() {
   const [revealed, setRevealed] = useState(false);
   const [finished, setFinished] = useState(false);
   const [countdown, setCountdown] = useState("");
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<boolean[]>([]);
   const [locked, setLocked] = useState(false);
 
   const playKey = `rym_${DAILY_ID}`;
@@ -70,7 +79,7 @@ export default function Page() {
     localStorage.setItem(saveKey, JSON.stringify({ score, results, finished }));
   }, [score, results, finished]);
 
-  const pick = (idx) => {
+  const pick = (idx: number) => {
     if (revealed || finished || locked) return;
 
     setLocked(true);
