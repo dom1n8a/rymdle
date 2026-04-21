@@ -186,7 +186,7 @@ export default function Page() {
 
   const share = async () => {
     await navigator.clipboard.writeText(
-      `Rymdle ${DAILY_ID} ${score}/5\n${buildEmojiGrid()}\nhttps://rymdle.vercel.app`
+      `RYMdle ${DAILY_ID} ${score}/5\n${buildEmojiGrid()}\nhttps://rymdle.vercel.app`
     );
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
@@ -216,7 +216,7 @@ export default function Page() {
     const max = Math.max(...distribution, 1);
 
     return (
-      <main className="relative flex flex-col items-center justify-center min-h-screen p-6 gap-6">
+      <main className="relative flex flex-col items-center justify-center min-h-screen p-6 gap-6 bg-gray-950 text-gray-200">
 
         <button
           onClick={() => setShowHelp(true)}
@@ -280,7 +280,7 @@ export default function Page() {
             {copied ? "Copied!" : "Share"}
           </button>
 
-          <p className="text-xs p-1 md:p-2 lg:p-2 text-gray-200">
+          <p className="text-xs p-1 md:p-2 lg:p-2 text-gray-500">
             Score at least 3 to win!
           </p>
 
@@ -323,7 +323,7 @@ export default function Page() {
   }
 
   return (
-    <main className="relative flex flex-col items-center justify-center min-h-screen p-4 gap-4">
+    <main className="relative flex flex-col items-center justify-center min-h-screen p-4 gap-4 bg-gray-950 text-gray-200">
 
       <button
         onClick={() => setShowHelp(true)}
