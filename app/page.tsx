@@ -1,5 +1,3 @@
-// Rymdle - Production Ready (UX Improvements: Share Feedback + Fixed Flip + Album Persistence)
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -14,7 +12,16 @@ type Album = {
   cover: string;
 };
 
-const DAILY_ALBUMS = [
+type Stats = {
+  played: number;
+  wins: number;
+  currentStreak: number;
+  maxStreak: number;
+  history: number[];
+  lastPlayedId: string;
+};
+
+const DAILY_ALBUMS: Album[] = [
   { title: "OK Computer", artist: "Radiohead", rating: 4.30, cover: "https://e.snmc.io/i/600/w/91f41d53d83f36ac3bb0cee7d6dffca3/11993756/radiohead-ok-computer-Cover-Art.jpg" },
   { title: "To Pimp a Butterfly", artist: "Kendrick Lamar", rating: 4.38, cover: "https://e.snmc.io/i/600/w/a47f7eef08776272f5525d5a1f7c9c6a/8121875/kendrick-lamar-to-pimp-a-butterfly-Cover-Art.jpg" },
   { title: "Abbey Road", artist: "The Beatles", rating: 4.30, cover: "https://e.snmc.io/i/600/w/b7d49832f4958688cd82b6dbb9f4dd31/12188855/the-beatles-abbey-road-Cover-Art.jpg" },
@@ -24,7 +31,7 @@ const DAILY_ALBUMS = [
   { title: "In Rainbows", artist: "Radiohead", rating: 4.33, cover: "https://e.snmc.io/i/600/w/fadce3351784e528a8257b7c78f0b55a/14126517/radiohead-in-rainbows-Cover-Art.jpg" },
   { title: "Loveless", artist: "My Bloody Valentine", rating: 4.25, cover: "https://e.snmc.io/i/600/w/47da1d4284997ca321af967068f34d7b/11569981/my-bloody-valentine-loveless-Cover-Art.jpg" },
   { title: "Discovery", artist: "Daft Punk", rating: 4.14, cover: "https://e.snmc.io/i/600/w/f257109d44300506428e21138338e884/13215963/daft-punk-discovery-Cover-Art.jpg" },
-  { title: "Kid A", artist: "Radiohead", rating: 4.25, cover: "https://e.snmc.io/i/600/w/076215c80b1810341e978bbdbf47af69/12580450/radiohead-kid-a-Cover-Art.jpg" },
+  { title: "Kid A", artist: "Radiohead", rating: 4.25, cover: "https://e.snmc.io/i/600/w/076215c80b1810341e978bbdbf47af69/12580450/radiohead-kid-a-Cover-Art.jpg" }
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
@@ -60,16 +67,38 @@ export default function Page() {
   const [locked, setLocked] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const playKey = `rym_${DAILY_ID}`;
+  const [stats, setStats] = useState<Stats>({
+    played: 0,
+    wins: 0,
+    currentStreak: 0,
+    maxStreak: 0,
+    history: [],
+    lastPlayedId: ""
+  });
+
   const saveKey = `rym_save_${DAILY_ID}`;
+  const statsKey = "rym_stats";
 
   useEffect(() => {
     const saved = localStorage.getItem(saveKey);
     if (saved) {
       const data = JSON.parse(saved);
-      setScore(data.score);
-      setResults(data.results);
-      setFinished(data.finished);
+      setScore(data.score || 0);
+      setResults(data.results || []);
+      setFinished(data.finished || false);
+    }
+
+    const savedStats = localStorage.getItem(statsKey);
+    if (savedStats) {
+      const parsed = JSON.parse(savedStats);
+      setStats({
+        played: parsed.played || 0,
+        wins: parsed.wins || 0,
+        currentStreak: parsed.currentStreak || 0,
+        maxStreak: parsed.maxStreak || 0,
+        history: parsed.history || [],
+        lastPlayedId: parsed.lastPlayedId || ""
+      });
     }
 
     const i = setInterval(() => setCountdown(getCountdown()), 1000);
@@ -79,6 +108,10 @@ export default function Page() {
   useEffect(() => {
     localStorage.setItem(saveKey, JSON.stringify({ score, results, finished }));
   }, [score, results, finished]);
+
+  useEffect(() => {
+    localStorage.setItem(statsKey, JSON.stringify(stats));
+  }, [stats]);
 
   const pick = (idx: number) => {
     if (revealed || finished || locked) return;
@@ -100,8 +133,23 @@ export default function Page() {
 
   const next = () => {
     if (round === 4) {
-      localStorage.setItem(playKey, "1");
       setFinished(true);
+
+      setStats((prev) => {
+        if (prev.lastPlayedId === DAILY_ID) return prev;
+
+        const won = score >= 3;
+        const newStreak = won ? prev.currentStreak + 1 : 0;
+
+        return {
+          played: prev.played + 1,
+          wins: won ? prev.wins + 1 : prev.wins,
+          currentStreak: newStreak,
+          maxStreak: Math.max(prev.maxStreak, newStreak),
+          history: [...prev.history, score],
+          lastPlayedId: DAILY_ID
+        };
+      });
     } else {
       setRound((r) => r + 1);
       setRevealed(false);
@@ -114,27 +162,78 @@ export default function Page() {
     await navigator.clipboard.writeText(
       `Rymdle ${DAILY_ID} ${score}/5\n${buildEmojiGrid()}\nhttps://rymdle.vercel.app`
     );
-
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   };
 
+  const [a, b] = pairs[round];
+  const correct = a.rating > b.rating ? 0 : 1;
+
   if (finished) {
+    const winPercent = stats.played
+      ? Math.round((stats.wins / stats.played) * 100)
+      : 0;
+
+    const distribution = [0, 0, 0, 0, 0, 0];
+    (stats.history || []).forEach((s) => {
+      if (s >= 0 && s <= 5) distribution[s]++;
+    });
+
+    const max = Math.max(...distribution, 1);
+
     return (
-      <main className="flex flex-col items-center justify-center min-h-screen p-6 text-center gap-4">
+      <main className="flex flex-col items-center justify-center min-h-screen p-6 gap-6">
         <h1 className="text-2xl font-bold">Rymdle</h1>
         <p className="text-xl">{score}/5</p>
+
         <button onClick={share} className="w-full max-w-xs py-3 bg-black text-white rounded-xl">
           {copied ? "Copied!" : "Share"}
         </button>
-        <pre className="text-sm">{buildEmojiGrid()}</pre>
-        <p className="text-sm text-gray-500">Next puzzle in {countdown}</p>
+
+        <div className="w-full max-w-md text-center">
+          <h2 className="font-bold mb-2">STATISTICS</h2>
+          <div className="grid grid-cols-4 gap-2 text-sm">
+            <div><div className="text-xl">{stats.played}</div><div>Played</div></div>
+            <div><div className="text-xl">{winPercent}</div><div>Win %</div></div>
+            <div><div className="text-xl">{stats.currentStreak}</div><div>Streak</div></div>
+            <div><div className="text-xl">{stats.maxStreak}</div><div>Max</div></div>
+          </div>
+        </div>
+
+        <div className="w-full max-w-md">
+          <h2 className="font-bold mb-2 text-center">SCORES</h2>
+
+          {distribution.map((count, i) => {
+            const width = (count / max) * 100;
+            const isToday = i === score;
+
+            return (
+              <div key={i} className="flex items-center gap-2 text-sm mb-2">
+                <span className="w-4">{i}</span>
+
+                <div className="flex-1 bg-gray-300 rounded overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${width}%` }}
+                    transition={{ duration: 0.6, delay: i * 0.05 }}
+                    className={`text-white text-right pr-2 ${
+                      isToday ? "bg-green-600" : "bg-gray-500"
+                    }`}
+                  >
+                    {count > 0 && count}
+                  </motion.div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <p className="text-sm text-gray-500">
+          Next puzzle in {countdown}
+        </p>
       </main>
     );
   }
-
-  const [a, b] = pairs[round];
-  const correct = a.rating > b.rating ? 0 : 1;
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-4 gap-4">
@@ -159,7 +258,6 @@ export default function Page() {
                 className="relative w-full h-full"
                 style={{ transformStyle: "preserve-3d" }}
               >
-                {/* FRONT */}
                 <div
                   className="absolute inset-0 flex items-center gap-4 p-4 rounded-xl bg-gray-900 text-white"
                   style={{ backfaceVisibility: "hidden" }}
@@ -171,18 +269,15 @@ export default function Page() {
                   </div>
                 </div>
 
-                {/* BACK */}
                 <div
-                  className={`absolute inset-0 flex items-center justify-center rounded-xl text-white ${
+                  className={`absolute inset-0 flex flex-col items-center justify-center rounded-xl text-white ${
                     state === "correct" ? "bg-green-600" : "bg-red-600"
                   }`}
                   style={{ transform: "rotateX(180deg)", backfaceVisibility: "hidden" }}
                 >
-                  <div className="text-center">
-                    <p className="text-sm font-semibold">{album.title}</p>
-                    <p className="text-xs opacity-80">{album.artist}</p>
-                    <p className="text-sm mt-1">{album.rating}</p>
-                  </div>
+                  <p className="text-sm font-semibold">{album.title}</p>
+                  <p className="text-xs opacity-80">{album.artist}</p>
+                  <p className="text-sm mt-1">{album.rating}</p>
                 </div>
               </motion.div>
             </motion.button>
