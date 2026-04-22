@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const DAILY_ID = "2026-04-22";
+const DAILY_ID = "2026-04-23";
 
 type Album = {
   title: string;
@@ -22,16 +22,16 @@ type Stats = {
 };
 
 const DAILY_ALBUMS: Album[] = [
-  { title: "Monarch of Monsters", artist: "Vylet Pony", rating: 3.72, cover: "https://e.snmc.io/i/600/w/1cd47f9faeda859529439eab4f2636f5/14456726/vylet-pony-monarch-of-monsters-Cover-Art.jpg" },
-  { title: "U", artist: "underscores", rating: 3.74, cover: "https://e.snmc.io/i/600/w/5aec7be1173d2ac0ff4a83faf83ef7a6/14332342/underscores-u-Cover-Art.jpg" },
-  { title: "Vol.II", artist: "Angine de Poitrine", rating: 3.62, cover: "https://e.snmc.io/i/600/w/5f2c4cde64f4ee10759cd0d4ed144fab/14461846/angine-de-poitrine-vol_ii-Cover-Art.jpg" },
-  { title: "Something Beautiful", artist: "Miley Cyrus", rating: 3.56, cover: "https://e.snmc.io/i/600/w/690e767617460647b086507515e1500c/13197873/miley-cyrus-something-beautiful-Cover-Art.jpg" },
-  { title: "Magic, Alive!", artist: "McKinley Dixon", rating: 3.88, cover: "https://e.snmc.io/i/600/w/4dcc1c721c516b3539da7aedf2fde873/13056599/mckinley-dixon-magic-alive-Cover-Art.jpg" },
-  { title: "Getting Killed", artist: "Geese", rating: 3.85, cover: "https://e.snmc.io/i/600/w/d265b3bcc976fa479c9559ef9cbaf0f9/13592904/geese-getting-killed-Cover-Art.jpg" },
-  { title: "Beloved! Paradise! Jazz!?", artist: "McKinley Dixon", rating: 3.79, cover: "https://e.snmc.io/i/600/w/cf26c55cd69879fd87f9668d72230227/10775791/mckinley-dixon-beloved-paradise-jazz-Cover-Art.jpg" },
-  { title: "3D Country", artist: "Geese", rating: 3.84, cover: "https://e.snmc.io/i/600/w/12007cb306a215c41385600b272e0f61/10816435/geese-3d-country-Cover-Art.jpg" },
-  { title: "Dragon New Warm Mountain I Believe in You", artist: "Big Thief", rating: 3.99, cover: "https://e.snmc.io/i/600/w/4cb4a4c9acc69f56e9852789b18f2cd4/9503983/big-thief-dragon-new-warm-mountain-i-believe-in-you-Cover-Art.jpg" },
-  { title: "Scaring the Hoes", artist: "JPEGMAFIA & Danny Brown", rating: 3.91, cover: "https://e.snmc.io/i/600/w/cb3d1484e75dd18366f2580344c3000f/10795080/jpegmafia-and-danny-brown-scaring-the-hoes-Cover-Art.jpg" }
+  { title: "Halo", artist: "Tiffany Day", rating: 3.52, cover: "https://e.snmc.io/i/600/w/ad48d4633014ca9679f49dea9d3d14c3/14463701/tiffany-day-halo-Cover-Art.jpg" },
+  { title: "Help!", artist: "The Beatles", rating: 3.62, cover: "https://e.snmc.io/i/600/w/697b4950cf198ea029123a7f72b2b6f1/12176980/the-beatles-help-Cover-Art.jpg" },
+  { title: "Homework", artist: "Daft Punk", rating: 3.54, cover: "https://e.snmc.io/i/600/w/60e87a348582d1a726aaf3314d86bd61/12296822/daft-punk-homework-Cover-Art.jpg" },
+  { title: "Hybrid Theory", artist: "Linkin Park", rating: 3.50, cover: "https://e.snmc.io/i/600/w/bb83540fbfafecf1b710ee89e0722852/12929229/linkin-park-hybrid-theory-Cover-Art.png" },
+  { title: "Hounds of Love", artist: "Kate Bush", rating: 4.15, cover: "https://e.snmc.io/i/600/w/b5bad9c16ff94f58ea5d566fb18121e3/12177980/kate-bush-hounds-of-love-Cover-Art.jpg" },
+  { title: "Heaven or Las Vegas", artist: "Cocteau Twins", rating: 4.20, cover: "https://e.snmc.io/i/600/w/d688c2e2d37251698dbbc1355018340a/11766199/cocteau-twins-heaven-or-las-vegas-Cover-Art.jpg" },
+  { title: "Helplessness Blues", artist: "Fleet Foxes", rating: 3.90, cover: "https://e.snmc.io/i/600/w/2cd04aae6905c91318d4497688d9022a/11006996/fleet-foxes-helplessness-blues-Cover-Art.jpg" },
+  { title: "House of Balloons", artist: "The Weeknd", rating: 3.85, cover: "https://e.snmc.io/i/600/w/e633d13cca30d0ec6333e665a3abd92b/10191350/the-weeknd-house-of-balloons-Cover-Art.jpg" },
+  { title: "Highway 61 Revisited", artist: "Bob Dylan", rating: 4.16, cover: "https://e.snmc.io/i/600/w/672133d5b4b2576e79577e983c973b03/14505121/bob-dylan-highway-61-revisited-Cover-Art.png" },
+  { title: "Hunky Dory", artist: "David Bowie", rating: 3.99, cover: "https://e.snmc.io/i/600/w/da3903d594157f4e7908d4e112fa34c3/8053232/david-bowie-hunky-dory-Cover-Art.jpg" },
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
@@ -230,7 +230,7 @@ export default function Page() {
             RYMdle
           </h1>
           <p className="text-xs text-gray-500 p-1">
-            A daily RYM rating based guessing game.
+            A daily RYM rating based guessing game - pick the highest rated album!
           </p>
         </div>
 
@@ -293,27 +293,33 @@ export default function Page() {
 
       {showHelp && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50">
-          <div className="text-center bg-gray-900 text-white max-w-md w-full p-6 rounded-xl">
-            <h2 className="text-lg font-bold mb-2">How to Play</h2>
+          <div className="bg-gray-900 text-white max-w-md w-full p-6 rounded-2xl shadow-2xl border border-white/10">
 
-            <p className="text-sm mb-2">
-              You will be shown two albums each round.
-            </p>
+            <h2 className="text-xl font-semibold text-center mb-4">
+              How to Play
+            </h2>
 
-            <p className="text-sm mb-2">
-              Choose the album you think has the higher RateYourMusic rating.
-            </p>
+            <div className="space-y-3 text-sm text-gray-200 leading-relaxed">
+              <p>
+                You will be shown <span className="text-white font-medium">two albums</span> each round.
+              </p>
 
-            <p className="text-sm mb-4">
-              Get as many correct as possible out of 5 rounds.
-            </p>
+              <p>
+                Pick the one you think has the <span className="text-white font-medium">higher RateYourMusic rating</span>.
+              </p>
+
+              <p>
+                There are <span className="text-white font-medium">5 rounds</span>. Try to get the highest score possible.
+              </p>
+            </div>
 
             <button
               onClick={() => setShowHelp(false)}
-              className="w-full py-2 bg-black text-white rounded-lg"
+              className="mt-6 w-full py-2.5 bg-green-700 hover:bg-green-800 transition-colors rounded-xl text-sm font-medium border border-white/10"
             >
               Got it
             </button>
+
           </div>
         </div>
       )}
@@ -337,7 +343,7 @@ export default function Page() {
           RYMdle
         </h1>
         <p className="text-xs text-gray-500 pb-17">
-          A daily RYM rating based guessing game.
+          A daily RYM rating based guessing game - pick the highest rated album!
         </p>
         <p className="text-sm text-gray-400 md:p-1 lg:p-2">
           Round {round + 1}/5
