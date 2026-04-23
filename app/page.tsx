@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const DAILY_ID = "2026-04-23";
+const DAILY_ID = "2026-04-24";
 
 type Album = {
   title: string;
@@ -22,16 +22,16 @@ type Stats = {
 };
 
 const DAILY_ALBUMS: Album[] = [
-  { title: "Halo", artist: "Tiffany Day", rating: 3.52, cover: "https://e.snmc.io/i/600/w/ad48d4633014ca9679f49dea9d3d14c3/14463701/tiffany-day-halo-Cover-Art.jpg" },
-  { title: "Help!", artist: "The Beatles", rating: 3.62, cover: "https://e.snmc.io/i/600/w/697b4950cf198ea029123a7f72b2b6f1/12176980/the-beatles-help-Cover-Art.jpg" },
-  { title: "Homework", artist: "Daft Punk", rating: 3.54, cover: "https://e.snmc.io/i/600/w/60e87a348582d1a726aaf3314d86bd61/12296822/daft-punk-homework-Cover-Art.jpg" },
-  { title: "Hybrid Theory", artist: "Linkin Park", rating: 3.50, cover: "https://e.snmc.io/i/600/w/bb83540fbfafecf1b710ee89e0722852/12929229/linkin-park-hybrid-theory-Cover-Art.png" },
-  { title: "Hounds of Love", artist: "Kate Bush", rating: 4.15, cover: "https://e.snmc.io/i/600/w/b5bad9c16ff94f58ea5d566fb18121e3/12177980/kate-bush-hounds-of-love-Cover-Art.jpg" },
-  { title: "Heaven or Las Vegas", artist: "Cocteau Twins", rating: 4.20, cover: "https://e.snmc.io/i/600/w/d688c2e2d37251698dbbc1355018340a/11766199/cocteau-twins-heaven-or-las-vegas-Cover-Art.jpg" },
-  { title: "Helplessness Blues", artist: "Fleet Foxes", rating: 3.90, cover: "https://e.snmc.io/i/600/w/2cd04aae6905c91318d4497688d9022a/11006996/fleet-foxes-helplessness-blues-Cover-Art.jpg" },
-  { title: "House of Balloons", artist: "The Weeknd", rating: 3.85, cover: "https://e.snmc.io/i/600/w/e633d13cca30d0ec6333e665a3abd92b/10191350/the-weeknd-house-of-balloons-Cover-Art.jpg" },
-  { title: "Highway 61 Revisited", artist: "Bob Dylan", rating: 4.16, cover: "https://e.snmc.io/i/600/w/672133d5b4b2576e79577e983c973b03/14505121/bob-dylan-highway-61-revisited-Cover-Art.png" },
-  { title: "Hunky Dory", artist: "David Bowie", rating: 3.99, cover: "https://e.snmc.io/i/600/w/da3903d594157f4e7908d4e112fa34c3/8053232/david-bowie-hunky-dory-Cover-Art.jpg" },
+  { title: "Discovery", artist: "Daft Punk", rating: 4.14, cover: "https://e.snmc.io/i/600/w/f257109d44300506428e21138338e884/13215963/daft-punk-discovery-Cover-Art.jpg" },
+  { title: "Doolittle", artist: "Pixies", rating: 4.09, cover: "https://e.snmc.io/i/600/w/eb151aeb75140bf3f5e6ef23a96b576e/9267576/pixies-doolittle-Cover-Art.png" },
+  { title: "Dummy", artist: "Portishead", rating: 4.19, cover: "https://e.snmc.io/i/600/w/e9720fb52f95796fcc00ae56aff09d41/10069850/portishead-dummy-Cover-Art.png" },
+  { title: "Disintegration", artist: "The Cure", rating: 4.26, cover: "https://e.snmc.io/i/600/w/b56a070ad027b23dace9e24102ae5da9/7272164/the-cure-disintegration-Cover-Art.jpg" },
+  { title: "Daydream Nation", artist: "Sonic Youth", rating: 4.04, cover: "https://e.snmc.io/i/600/w/7b15002151c0fedbe2b65fe2637d4996/10814815/sonic-youth-daydream-nation-Cover-Art.jpg" },
+  { title: "Donuts", artist: "J Dilla", rating: 4.14, cover: "https://e.snmc.io/i/600/w/ec9e0e501f14d399f1b824f4177c921a/14258100/j-dilla-donuts-Cover-Art.jpg" },
+  { title: "Drukqs", artist: "Aphex Twin", rating: 3.95, cover: "https://e.snmc.io/i/600/w/20b6628d8b54ae39ebffb5638d5620a1/5375218/aphex-twin-drukqs-Cover-Art.jpg" },
+  { title: "Deathconsciousness", artist: "Have a Nice Life", rating: 4.13, cover: "https://e.snmc.io/i/600/w/376ab7e54a7e0d30a5d3a749ae67275c/10669900/have-a-nice-life-deathconsciousness-Cover-Art.jpg" },
+  { title: "Damn.", artist: "Kendrick Lamar", rating: 3.66, cover: "https://e.snmc.io/i/600/w/d180d17f37ea3b0aaa447597420cd70b/8121897/kendrick-lamar-damn-Cover-Art.jpg" },
+  { title: "Doris", artist: "Earl Sweatshirt", rating: 3.55, cover: "https://e.snmc.io/i/600/w/0e67c521050c4482d3e4503d23bfee53/7851404/earl-sweatshirt-doris-Cover-Art.jpg" },
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
