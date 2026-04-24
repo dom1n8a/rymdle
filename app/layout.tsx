@@ -16,6 +16,17 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "RYMdle",
   description: "A daily RYM rating based guessing game. Pick the highest rated album!",
+
+  metadataBase: new URL("https://rymdle.vercel.app"),
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
+  verification: {
+    google: "z6zl-qXWeV0z_FgETQUu3jW4NEC3TPpSM3fqpSjURTk",
+  },
 };
 
 export default function RootLayout({

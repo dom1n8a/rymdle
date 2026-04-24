@@ -69,6 +69,8 @@ export default function Page() {
   const [showHelp, setShowHelp] = useState(false);
   const helpKey = "rym_help_seen";
   const [skipAnim, setSkipAnim] = useState(false);
+  const [picks, setPicks] = useState<number[]>([]);
+  const [showSummary, setShowSummary] = useState(false);
 
   const [stats, setStats] = useState<Stats>({
     played: 0,
@@ -87,11 +89,13 @@ export default function Page() {
     if (saved) {
       const data = JSON.parse(saved);
       const savedResults = data.results || [];
+      const savedPicks = data.picks || [];
 
       setScore(data.score || 0);
       setResults(savedResults);
+      setPicks(savedPicks);
       setFinished(data.finished || false);
-      setRound(savedResults.length); // 🔥 CRITICAL FIX
+      setRound(savedResults.length);
     }
 
     const savedStats = localStorage.getItem(statsKey);
@@ -118,7 +122,7 @@ export default function Page() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(saveKey, JSON.stringify({ score, results, finished }));
+    localStorage.setItem(saveKey, JSON.stringify({ score, results, finished, picks }));
   }, [score, results, finished]);
 
   useEffect(() => {
@@ -143,6 +147,7 @@ export default function Page() {
     const isCorrect = idx === correct;
 
     setResults((prev) => [...prev, isCorrect]);
+    setPicks((prev) => [...prev, idx]);
     if (isCorrect) setScore((s) => s + 1);
 
     setTimeout(() => {
@@ -273,7 +278,14 @@ export default function Page() {
             );
           })}
         </div>
-        
+
+        <button
+          onClick={() => setShowSummary(true)}
+          className="w-full max-w-xs whitespace-nowrap flex items-center justify-center py-2 px-30 bg-gray-800 hover:bg-gray-700 transition duration-300 ease-in-out text-white rounded-xl"
+        >
+          View Summary
+        </button>
+
         <div className="text-center p-4">
 
           <button onClick={share} className="w-full max-w-xs py-4 px-30 bg-gray-800 hover:bg-gray-700 transition duration-300 ease-in-out text-white rounded-xl">
@@ -318,6 +330,79 @@ export default function Page() {
               className="mt-6 w-full py-2.5 bg-green-700 hover:bg-green-800 transition-colors rounded-xl text-sm font-medium border border-white/10"
             >
               Got it
+            </button>
+
+          </div>
+        </div>
+      )}
+
+      {showSummary && (
+        <div
+          className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50"
+          onClick={() => setShowSummary(false)}
+        >
+          
+          <div
+            className="bg-gray-900 text-white max-w-md w-full p-6 rounded-2xl shadow-2xl border border-white/10 overflow-y-auto max-h-[90vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+
+            <h2 className="text-xl font-semibold text-center mb-4">
+              Today's Summary
+            </h2>
+
+            <div className="space-y-4 text-sm">
+              {pairs.map((pair, i) => {
+                const [a, b] = pair;
+                const pickedIndex = picks[i];
+                const correctIndex = a.rating > b.rating ? 0 : 1;
+
+                return (
+                  <div key={i} className="border border-white/10 rounded-lg p-3">
+                    <p className="mb-2 font-medium">Round {i + 1}</p>
+
+                    {[a, b].map((album, idx) => {
+                      const isPicked = pickedIndex === idx;
+                      const isCorrect = correctIndex === idx;
+
+                      return (
+                        <div
+                          key={idx}
+                          className={`p-2 rounded mb-1 flex items-center justify-between gap-2 ${
+                            isCorrect
+                              ? "bg-green-900"
+                              : isPicked
+                              ? "bg-red-900"
+                              : "bg-gray-800"
+                          }`}
+                        >
+                          <div className="flex items-center gap-2">
+                            <img
+                              src={album.cover}
+                              className="w-10 h-10 rounded object-cover"
+                            />
+                            <div>
+                              <p className="text-xs font-semibold">
+                                {album.title}
+                                {isPicked && " (Your Pick)"}
+                              </p>
+                              <p className="text-[10px] opacity-70">{album.artist}</p>
+                            </div>
+                          </div>
+                          <span className="text-xs">{album.rating}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })}
+            </div>
+
+            <button
+              onClick={() => setShowSummary(false)}
+              className="mt-6 w-full py-2.5 bg-gray-700 hover:bg-gray-600 rounded-xl text-sm"
+            >
+              Close
             </button>
 
           </div>
@@ -437,6 +522,79 @@ export default function Page() {
               className="mt-6 w-full py-2.5 bg-green-700 hover:bg-green-800 transition-colors rounded-xl text-sm font-medium border border-white/10"
             >
               Got it
+            </button>
+
+          </div>
+        </div>
+      )}
+
+      {showSummary && (
+        <div
+          className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50"
+          onClick={() => setShowSummary(false)}
+        >
+          
+          <div
+            className="bg-gray-900 text-white max-w-md w-full p-6 rounded-2xl shadow-2xl border border-white/10 overflow-y-auto max-h-[90vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+
+            <h2 className="text-xl font-semibold text-center mb-4">
+              Today's Summary
+            </h2>
+
+            <div className="space-y-4 text-sm">
+              {pairs.map((pair, i) => {
+                const [a, b] = pair;
+                const pickedIndex = picks[i];
+                const correctIndex = a.rating > b.rating ? 0 : 1;
+
+                return (
+                  <div key={i} className="border border-white/10 rounded-lg p-3">
+                    <p className="mb-2 font-medium">Round {i + 1}</p>
+
+                    {[a, b].map((album, idx) => {
+                      const isPicked = pickedIndex === idx;
+                      const isCorrect = correctIndex === idx;
+
+                      return (
+                        <div
+                          key={idx}
+                          className={`p-2 rounded mb-1 flex items-center justify-between gap-2 ${
+                            isCorrect
+                              ? "bg-green-900"
+                              : isPicked
+                              ? "bg-red-900"
+                              : "bg-gray-800"
+                          }`}
+                        >
+                          <div className="flex items-center gap-2">
+                            <img
+                              src={album.cover}
+                              className="w-10 h-10 rounded object-cover"
+                            />
+                            <div>
+                              <p className="text-xs font-semibold">
+                                {album.title}
+                                {isPicked && " (Your Pick)"}
+                              </p>
+                              <p className="text-[10px] opacity-70">{album.artist}</p>
+                            </div>
+                          </div>
+                          <span className="text-xs">{album.rating}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })}
+            </div>
+
+            <button
+              onClick={() => setShowSummary(false)}
+              className="mt-6 w-full py-2.5 bg-gray-700 hover:bg-gray-600 rounded-xl text-sm"
+            >
+              Close
             </button>
 
           </div>
