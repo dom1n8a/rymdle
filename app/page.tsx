@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
+
 const DAILY_ID = "2026-04-25";
 
 type Album = {
@@ -22,16 +23,16 @@ type Stats = {
 };
 
 const DAILY_ALBUMS: Album[] = [
-  { title: "Blue", artist: "Joni Mitchell", rating: 4.07, cover: "https://e.snmc.io/i/600/w/e3b5e620ec9e2aa1dede89fd3a889cd2/12397385/joni-mitchell-blue-Cover-Art.jpg" },
-  { title: "Titanic Rising", artist: "Weyes Blood", rating: 4.00, cover: "https://e.snmc.io/i/600/w/5e65a4952c836050ed0fbfad8a6d1057/9823576/weyes-blood-titanic-rising-Cover-Art.jpg" },
-  { title: "Melodrama", artist: "Lorde", rating: 3.76, cover: "https://e.snmc.io/i/600/w/7cbbdb57713b17ce34fe82b3a167f15e/11298888/lorde-melodrama-Cover-Art.jpg" },
-  { title: "For the Rest of Your Life", artist: "twikipedia", rating: 3.56, cover: "https://e.snmc.io/i/600/w/cb72c8a1da839cfa72618259c365eebc/12101108/twikipedia-for-the-rest-of-your-life-Cover-Art.jpg" },
-  { title: "No Hands", artist: "Joey Valence & Brae", rating: 3.75, cover: "https://e.snmc.io/i/600/w/663c9117970e78f3f6085a61c6781094/12152825/joey-valence-and-brae-no-hands-Cover-Art.jpg" },
-  { title: "Weezer [Blue Album]", artist: "Weezer", rating: 3.87, cover: "https://e.snmc.io/i/600/w/1302aa8ed63c42f3b9c04dd8511c6f14/8050262/weezer-weezer-blue-album-Cover-Art.png" },
-  { title: "Third", artist: "Portishead", rating: 3.99, cover: "https://e.snmc.io/i/600/w/3b9d6a871114f22016d896aa0769bf9d/13314540/portishead-third-Cover-Art.png" },
-  { title: "Hatful of Hollow", artist: "The Smiths", rating: 4.10, cover: "https://e.snmc.io/i/600/w/8950513698391126dc9e02c6f35745f5/12056403/the-smiths-hatful-of-hollow-Cover-Art.jpg" },
-  { title: "Wor$t Girl in America", artist: "Slayyyter", rating: 3.81, cover: "https://e.snmc.io/i/600/w/4d921608a53cc9365fa651baa97b1fa0/14164751/slayyyter-wor_t-girl-in-america-Cover-Art.jpg" },
-  { title: "무너지기 Crumbling", artist: "공중도둑 [Mid-Air Thief]", rating: 3.92, cover: "https://e.snmc.io/i/600/w/18a3883c1db3e6459b374be6272fcbfe/10916633/공중도둑-mid-air-thief-무너지기-Cover-Art.jpg" },
+  { title: "Blue", artist: "Joni Mitchell", rating: 4.07, cover: "https://coverartarchive.org/release/243fb7b0-e7f3-42e8-bdfc-a66fd9e23d0e/front-250" },
+  { title: "Titanic Rising", artist: "Weyes Blood", rating: 4, cover: "https://coverartarchive.org/release/19e1586e-4324-45a4-af50-b95c08c8dd97/front-250" },
+  { title: "Melodrama", artist: "Lorde", rating: 3.76, cover: "https://coverartarchive.org/release/ce44d3ad-d841-4e1a-a5f5-a27ce6d5ec09/front-250" },
+  { title: "For the Rest of Your Life", artist: "twikipedia", rating: 3.56, cover: "https://coverartarchive.org/release/d77e6db5-635b-44bb-a61d-c60e20ef0484/front-250" },
+  { title: "No Hands", artist: "Joey Valence & Brae", rating: 3.75, cover: "https://coverartarchive.org/release/43266c00-ff98-4277-a978-38176947f6db/front-250" },
+  { title: "Weezer [Blue Album]", artist: "Weezer", rating: 3.87, cover: "https://coverartarchive.org/release/1e477f68-c407-4eae-ad01-518528cedc2c/front-250" },
+  { title: "Third", artist: "Portishead", rating: 3.99, cover: "https://coverartarchive.org/release/bc18c59d-6131-4e18-aff5-4600ea7f3d7d/front-250" },
+  { title: "Hatful of Hollow", artist: "The Smiths", rating: 4.1, cover: "https://coverartarchive.org/release/241680ca-ffc6-4106-8d63-a9c7dbdc5925/front-250" },
+  { title: "Wor$t Girl in America", artist: "Slayyyter", rating: 3.81, cover: "https://coverartarchive.org/release/79a2f948-e3a2-4eee-ae7b-2f0e117d4c1d/front-250" },
+  { title: "무너지기 Crumbling", artist: "공중도둑 [Mid-Air Thief]", rating: 3.92, cover: "https://coverartarchive.org/release/09971491-77c9-4a86-92ff-0c2d41a8377c/front-250" }
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
@@ -83,6 +84,25 @@ export default function Page() {
 
   const saveKey = `rym_save_${DAILY_ID}`;
   const statsKey = "rym_stats";
+
+  useEffect(() => {
+    DAILY_ALBUMS.forEach((album) => {
+      const img = new Image();
+      img.src = album.cover;
+    });
+  }, []);
+  
+  useEffect(() => {
+    if (!revealed) return;
+
+    const nextPair = pairs[round + 1];
+    if (!nextPair) return;
+
+    nextPair.forEach((album) => {
+      const img = new Image();
+      img.src = album.cover;
+    });
+  }, [revealed, round, pairs]);
 
   useEffect(() => {
     const saved = localStorage.getItem(saveKey);
@@ -158,6 +178,7 @@ export default function Page() {
 
   const next = () => {
     setSkipAnim(true);
+
     if (round === 4) {
       setFinished(true);
 
@@ -176,15 +197,15 @@ export default function Page() {
           lastPlayedId: DAILY_ID
         };
       });
+
     } else {
-      setRound((r) => r + 1);
       setRevealed(false);
+      setRound((r) => r + 1);
     }
 
     requestAnimationFrame(() => {
       setSkipAnim(false);
     });
-
   };
 
   const buildEmojiGrid = () => results.map((r) => (r ? "🟩" : "🟥")).join("");
@@ -379,6 +400,7 @@ export default function Page() {
                           <div className="flex items-center gap-2">
                             <img
                               src={album.cover}
+                              loading="eager"
                               className="w-10 h-10 rounded object-cover"
                             />
                             <div>
@@ -463,7 +485,11 @@ export default function Page() {
                   className="absolute inset-0 flex items-center gap-4 p-4 rounded-xl bg-gray-900 hover:bg-gray-800 transition duration-300 ease-in-out text-white cursor-pointer"
                   style={{ backfaceVisibility: "hidden" }}
                 >
-                  <img src={album.cover} className="w-16 h-16 rounded object-cover" />
+                  <img src=
+                    {album.cover}
+                    loading="eager"
+                    className="w-16 h-16 rounded object-cover"
+                  />
                   <div>
                     <h2 className="text-left text-sm font-semibold">{album.title}</h2>
                     <p className="text-left text-xs opacity-70">{album.artist}</p>
@@ -571,6 +597,7 @@ export default function Page() {
                           <div className="flex items-center gap-2">
                             <img
                               src={album.cover}
+                              loading="eager"
                               className="w-10 h-10 rounded object-cover"
                             />
                             <div>
