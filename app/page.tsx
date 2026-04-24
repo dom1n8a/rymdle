@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const DAILY_ID = "2026-04-24";
+const DAILY_ID = "2026-04-25";
 
 type Album = {
   title: string;
@@ -22,16 +22,16 @@ type Stats = {
 };
 
 const DAILY_ALBUMS: Album[] = [
-  { title: "Discovery", artist: "Daft Punk", rating: 4.14, cover: "https://e.snmc.io/i/600/w/f257109d44300506428e21138338e884/13215963/daft-punk-discovery-Cover-Art.jpg" },
-  { title: "Doolittle", artist: "Pixies", rating: 4.09, cover: "https://e.snmc.io/i/600/w/eb151aeb75140bf3f5e6ef23a96b576e/9267576/pixies-doolittle-Cover-Art.png" },
-  { title: "Dummy", artist: "Portishead", rating: 4.19, cover: "https://e.snmc.io/i/600/w/e9720fb52f95796fcc00ae56aff09d41/10069850/portishead-dummy-Cover-Art.png" },
-  { title: "Disintegration", artist: "The Cure", rating: 4.26, cover: "https://e.snmc.io/i/600/w/b56a070ad027b23dace9e24102ae5da9/7272164/the-cure-disintegration-Cover-Art.jpg" },
-  { title: "Daydream Nation", artist: "Sonic Youth", rating: 4.04, cover: "https://e.snmc.io/i/600/w/7b15002151c0fedbe2b65fe2637d4996/10814815/sonic-youth-daydream-nation-Cover-Art.jpg" },
-  { title: "Donuts", artist: "J Dilla", rating: 4.14, cover: "https://e.snmc.io/i/600/w/ec9e0e501f14d399f1b824f4177c921a/14258100/j-dilla-donuts-Cover-Art.jpg" },
-  { title: "Drukqs", artist: "Aphex Twin", rating: 3.95, cover: "https://e.snmc.io/i/600/w/20b6628d8b54ae39ebffb5638d5620a1/5375218/aphex-twin-drukqs-Cover-Art.jpg" },
-  { title: "Deathconsciousness", artist: "Have a Nice Life", rating: 4.13, cover: "https://e.snmc.io/i/600/w/376ab7e54a7e0d30a5d3a749ae67275c/10669900/have-a-nice-life-deathconsciousness-Cover-Art.jpg" },
-  { title: "Damn.", artist: "Kendrick Lamar", rating: 3.66, cover: "https://e.snmc.io/i/600/w/d180d17f37ea3b0aaa447597420cd70b/8121897/kendrick-lamar-damn-Cover-Art.jpg" },
-  { title: "Doris", artist: "Earl Sweatshirt", rating: 3.55, cover: "https://e.snmc.io/i/600/w/0e67c521050c4482d3e4503d23bfee53/7851404/earl-sweatshirt-doris-Cover-Art.jpg" },
+  { title: "Blue", artist: "Joni Mitchell", rating: 4.07, cover: "https://e.snmc.io/i/600/w/e3b5e620ec9e2aa1dede89fd3a889cd2/12397385/joni-mitchell-blue-Cover-Art.jpg" },
+  { title: "Titanic Rising", artist: "Weyes Blood", rating: 4.00, cover: "https://e.snmc.io/i/600/w/5e65a4952c836050ed0fbfad8a6d1057/9823576/weyes-blood-titanic-rising-Cover-Art.jpg" },
+  { title: "Melodrama", artist: "Lorde", rating: 3.76, cover: "https://e.snmc.io/i/600/w/7cbbdb57713b17ce34fe82b3a167f15e/11298888/lorde-melodrama-Cover-Art.jpg" },
+  { title: "For the Rest of Your Life", artist: "twikipedia", rating: 3.56, cover: "https://e.snmc.io/i/600/w/cb72c8a1da839cfa72618259c365eebc/12101108/twikipedia-for-the-rest-of-your-life-Cover-Art.jpg" },
+  { title: "No Hands", artist: "Joey Valence & Brae", rating: 3.75, cover: "https://e.snmc.io/i/600/w/663c9117970e78f3f6085a61c6781094/12152825/joey-valence-and-brae-no-hands-Cover-Art.jpg" },
+  { title: "Weezer [Blue Album]", artist: "Weezer", rating: 3.87, cover: "https://e.snmc.io/i/600/w/1302aa8ed63c42f3b9c04dd8511c6f14/8050262/weezer-weezer-blue-album-Cover-Art.png" },
+  { title: "Third", artist: "Portishead", rating: 3.99, cover: "https://e.snmc.io/i/600/w/3b9d6a871114f22016d896aa0769bf9d/13314540/portishead-third-Cover-Art.png" },
+  { title: "Hatful of Hollow", artist: "The Smiths", rating: 4.10, cover: "https://e.snmc.io/i/600/w/8950513698391126dc9e02c6f35745f5/12056403/the-smiths-hatful-of-hollow-Cover-Art.jpg" },
+  { title: "Wor$t Girl in America", artist: "Slayyyter", rating: 3.81, cover: "https://e.snmc.io/i/600/w/4d921608a53cc9365fa651baa97b1fa0/14164751/slayyyter-wor_t-girl-in-america-Cover-Art.jpg" },
+  { title: "무너지기 Crumbling", artist: "공중도둑 [Mid-Air Thief]", rating: 3.92, cover: "https://e.snmc.io/i/600/w/18a3883c1db3e6459b374be6272fcbfe/10916633/공중도둑-mid-air-thief-무너지기-Cover-Art.jpg" },
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
