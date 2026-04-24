@@ -225,7 +225,7 @@ export default function Page() {
 
         <button
           onClick={() => setShowHelp(true)}
-          className="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-900 hover:bg-gray-800 transition duration-300 ease-in-out text-white flex items-center justify-center"
+          className="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-900 hover:bg-gray-800 transition duration-300 ease-in-out text-white flex items-center justify-center cursor-pointer"
         >
           ?
         </button>
@@ -281,14 +281,14 @@ export default function Page() {
 
         <button
           onClick={() => setShowSummary(true)}
-          className="w-full max-w-xs whitespace-nowrap flex items-center justify-center py-2 px-30 bg-gray-800 hover:bg-gray-700 transition duration-300 ease-in-out text-white rounded-xl"
+          className="w-full max-w-xs whitespace-nowrap flex items-center justify-center py-2 px-30 bg-gray-800 hover:bg-gray-700 transition duration-300 ease-in-out text-white rounded-xl cursor-pointer"
         >
           View Summary
         </button>
 
         <div className="text-center p-4">
 
-          <button onClick={share} className="w-full max-w-xs py-4 px-30 bg-gray-800 hover:bg-gray-700 transition duration-300 ease-in-out text-white rounded-xl">
+          <button onClick={share} className="w-full max-w-xs py-4 px-30 bg-gray-800 hover:bg-gray-700 transition duration-300 ease-in-out text-white rounded-xl cursor-pointer">
             {copied ? "Copied!" : "Share"}
           </button>
 
@@ -327,7 +327,7 @@ export default function Page() {
 
             <button
               onClick={() => setShowHelp(false)}
-              className="mt-6 w-full py-2.5 bg-green-700 hover:bg-green-800 transition-colors rounded-xl text-sm font-medium border border-white/10"
+              className="mt-6 w-full py-2.5 bg-green-700 hover:bg-green-800 transition-colors rounded-xl text-sm font-medium border border-white/10 cursor-pointer"
             >
               Got it
             </button>
@@ -400,7 +400,7 @@ export default function Page() {
 
             <button
               onClick={() => setShowSummary(false)}
-              className="mt-6 w-full py-2.5 bg-gray-700 hover:bg-gray-600 rounded-xl text-sm"
+              className="mt-6 w-full py-2.5 bg-gray-700 hover:bg-gray-600 rounded-xl text-sm cursor-pointer"
             >
               Close
             </button>
@@ -418,7 +418,7 @@ export default function Page() {
 
       <button
         onClick={() => setShowHelp(true)}
-        className="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-900 hover:bg-gray-800 transition duration-300 ease-in-out text-white flex items-center justify-center"
+        className="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-900 hover:bg-gray-800 transition duration-300 ease-in-out text-white flex items-center justify-center cursor-pointer"
       >
         ?
       </button>
@@ -453,14 +453,14 @@ export default function Page() {
                 animate={{ rotateX: revealed ? 180 : 0 }}
                 transition={
                   skipAnim
-                    ? { duration: 0 } // instant reset
+                    ? { duration: 0 }
                     : { duration: 0.45 }
                 }
                 className="relative w-full h-full"
                 style={{ transformStyle: "preserve-3d" }}
               >
                 <div
-                  className="absolute inset-0 flex items-center gap-4 p-4 rounded-xl bg-gray-900 hover:bg-gray-800 transition duration-300 ease-in-out text-white"
+                  className="absolute inset-0 flex items-center gap-4 p-4 rounded-xl bg-gray-900 hover:bg-gray-800 transition duration-300 ease-in-out text-white cursor-pointer"
                   style={{ backfaceVisibility: "hidden" }}
                 >
                   <img src={album.cover} className="w-16 h-16 rounded object-cover" />
@@ -490,7 +490,7 @@ export default function Page() {
       </div>
 
       {revealed && (
-        <button onClick={next} className="w-full max-w-xs py-3 bg-gray-800 hover:bg-gray-700 transition duration-300 ease-in-out text-white rounded-xl">
+        <button onClick={next} className="w-full max-w-xs py-3 bg-gray-800 hover:bg-gray-700 transition duration-300 ease-in-out text-white rounded-xl cursor-pointer">
           {round === 4 ? "Finish" : "Next"}
         </button>
       )}
@@ -519,7 +519,7 @@ export default function Page() {
 
             <button
               onClick={() => setShowHelp(false)}
-              className="mt-6 w-full py-2.5 bg-green-700 hover:bg-green-800 transition-colors rounded-xl text-sm font-medium border border-white/10"
+              className="mt-6 w-full py-2.5 bg-green-700 hover:bg-green-800 transition-colors rounded-xl text-sm font-medium border border-white/10 cursor-pointer"
             >
               Got it
             </button>
@@ -592,7 +592,7 @@ export default function Page() {
 
             <button
               onClick={() => setShowSummary(false)}
-              className="mt-6 w-full py-2.5 bg-gray-700 hover:bg-gray-600 rounded-xl text-sm"
+              className="mt-6 w-full py-2.5 bg-gray-700 hover:bg-gray-600 rounded-xl text-sm cursor-pointer"
             >
               Close
             </button>
