@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 
-const DAILY_ID = "2026-04-25";
+const DAILY_ID = "2026-04-26";
 
 type Album = {
   title: string;
@@ -23,16 +23,16 @@ type Stats = {
 };
 
 const DAILY_ALBUMS: Album[] = [
-  { title: "Blue", artist: "Joni Mitchell", rating: 4.07, cover: "https://coverartarchive.org/release/243fb7b0-e7f3-42e8-bdfc-a66fd9e23d0e/front-250" },
-  { title: "Titanic Rising", artist: "Weyes Blood", rating: 4, cover: "https://coverartarchive.org/release/19e1586e-4324-45a4-af50-b95c08c8dd97/front-250" },
-  { title: "Melodrama", artist: "Lorde", rating: 3.76, cover: "https://coverartarchive.org/release/ce44d3ad-d841-4e1a-a5f5-a27ce6d5ec09/front-250" },
-  { title: "For the Rest of Your Life", artist: "twikipedia", rating: 3.56, cover: "https://coverartarchive.org/release/d77e6db5-635b-44bb-a61d-c60e20ef0484/front-250" },
-  { title: "No Hands", artist: "Joey Valence & Brae", rating: 3.75, cover: "https://coverartarchive.org/release/43266c00-ff98-4277-a978-38176947f6db/front-250" },
-  { title: "Weezer [Blue Album]", artist: "Weezer", rating: 3.87, cover: "https://coverartarchive.org/release/1e477f68-c407-4eae-ad01-518528cedc2c/front-250" },
-  { title: "Third", artist: "Portishead", rating: 3.99, cover: "https://coverartarchive.org/release/bc18c59d-6131-4e18-aff5-4600ea7f3d7d/front-250" },
-  { title: "Hatful of Hollow", artist: "The Smiths", rating: 4.1, cover: "https://coverartarchive.org/release/241680ca-ffc6-4106-8d63-a9c7dbdc5925/front-250" },
-  { title: "Wor$t Girl in America", artist: "Slayyyter", rating: 3.81, cover: "https://coverartarchive.org/release/79a2f948-e3a2-4eee-ae7b-2f0e117d4c1d/front-250" },
-  { title: "무너지기 Crumbling", artist: "공중도둑 [Mid-Air Thief]", rating: 3.92, cover: "https://coverartarchive.org/release/09971491-77c9-4a86-92ff-0c2d41a8377c/front-250" }
+  { title: "Soundtracks for the Blind", artist: "Swans", rating: 4.16, cover: "https://coverartarchive.org/release/927a2b20-f8d3-4e87-8338-53423c86f6a8/front-250" },
+  { title: "Geogaddi", artist: "Boards of Canada", rating: 4.05, cover: "https://coverartarchive.org/release/90d8a6be-fb90-4161-96cd-2bb96e63a7d1/front-250" },
+  { title: "The Wall", artist: "Pink Floyd", rating: 3.84, cover: "https://coverartarchive.org/release/57af82e7-3bea-4789-ab4f-d2084555c2fb/front-250" },
+  { title: "Physical Graffiti", artist: "Led Zeppelin", rating: 3.97, cover: "https://coverartarchive.org/release/40d746fc-ceab-353c-9a8f-263e2ab6622c/front-250" },
+  { title: "Lift Yr. Skinny Fists Like Antennas to Heaven!", artist: "Godspeed You Black Emperor!", rating: 4.27, cover: "https://coverartarchive.org/release/e3334c4e-9612-43a2-923b-27e33acbd705/front-250" },
+  { title: "Ants From Up There", artist: "Black Country, New Road", rating: 4.04, cover: "https://coverartarchive.org/release/0788e1b9-d989-4a8f-9a9a-244d6338f014/front-250" },
+  { title: "The Epic", artist: "Kamasi Washington", rating: 3.79, cover: "https://coverartarchive.org/release/5bc9909b-a0c8-4d46-aef2-34aa4c07539e/front-250" },
+  { title: "Speakerboxxx / The Love Below", artist: "OutKast", rating: 3.62, cover: "https://coverartarchive.org/release/b71db82a-7d8c-4eab-9e13-99f0eca098fa/front-250" },
+  { title: "Sign '☮︎' the Times", artist: "Prince", rating: 4.04, cover: "https://coverartarchive.org/release/ae60fd4b-4e42-4930-b909-f8bc8dc48e5f/front-250" },
+  { title: "Mellon Collie and the Infinite Sadness", artist: "The Smashing Pumpkins", rating: 3.92, cover: "https://coverartarchive.org/release/bc3a5888-39b4-39d4-a10e-cc1b5309ba6a/front-250" }
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
@@ -69,9 +69,9 @@ export default function Page() {
   const [copied, setCopied] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const helpKey = "rym_help_seen";
-  const [skipAnim, setSkipAnim] = useState(false);
   const [picks, setPicks] = useState<number[]>([]);
   const [showSummary, setShowSummary] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
 
   const [stats, setStats] = useState<Stats>({
     played: 0,
@@ -84,6 +84,10 @@ export default function Page() {
 
   const saveKey = `rym_save_${DAILY_ID}`;
   const statsKey = "rym_stats";
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   useEffect(() => {
     DAILY_ALBUMS.forEach((album) => {
@@ -176,9 +180,7 @@ export default function Page() {
     }, 200);
   };
 
-  const next = () => {
-    setSkipAnim(true);
-
+ const next = () => {
     if (round === 4) {
       setFinished(true);
 
@@ -198,13 +200,14 @@ export default function Page() {
         };
       });
 
-    } else {
-      setRevealed(false);
-      setRound((r) => r + 1);
+      return;
     }
 
+    setRevealed(false);
+    setLocked(false);
+
     requestAnimationFrame(() => {
-      setSkipAnim(false);
+      setRound((r) => r + 1);
     });
   };
 
@@ -240,6 +243,8 @@ export default function Page() {
     });
 
     const max = Math.max(...distribution, 1);
+
+    if (!hydrated) return null;
 
     return (
       <main className="relative flex flex-col items-center justify-center min-h-screen p-6 gap-6 bg-gray-950 text-gray-200">
@@ -283,7 +288,7 @@ export default function Page() {
               <div key={i} className="flex items-center gap-2 text-sm mb-2">
                 <span className="w-4">{i}</span>
 
-                <div className="flex-1 bg-gray-300 rounded overflow-hidden">
+                <div className="flex-1 bg-gray-950 rounded overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${width}%` }}
@@ -309,8 +314,8 @@ export default function Page() {
 
         <div className="text-center p-4">
 
-          <button onClick={share} className="w-full max-w-xs py-4 px-30 bg-gray-800 hover:bg-gray-700 transition duration-300 ease-in-out text-white rounded-xl cursor-pointer">
-            {copied ? "Copied!" : "Share"}
+          <button onClick={share} className="w-full max-w-xs whitespace-nowrap flex items-center justify-center py-5 px-30 bg-gray-800 hover:bg-gray-700 transition duration-300 ease-in-out text-white rounded-xl cursor-pointer">
+            {copied ? "Copied!" : "Copy Results"}
           </button>
 
           <p className="text-xs p-1 md:p-2 lg:p-2 text-gray-500">
@@ -334,15 +339,15 @@ export default function Page() {
 
             <div className="space-y-3 text-sm text-gray-200 leading-relaxed">
               <p>
-                You will be shown <span className="text-white font-medium">two albums</span> each round.
+                - Pick the album you think has the <span className="text-white font-medium">higher RateYourMusic rating</span>.
               </p>
 
               <p>
-                Pick the one you think has the <span className="text-white font-medium">higher RateYourMusic rating</span>.
+                - There are <span className="text-white font-medium">5 rounds</span>. Try to get the highest score possible.
               </p>
 
               <p>
-                There are <span className="text-white font-medium">5 rounds</span>. Try to get the highest score possible.
+                - Score <span className="text-white font-medium">at least 3 points</span> to win!
               </p>
             </div>
 
@@ -411,7 +416,7 @@ export default function Page() {
                               <p className="text-[10px] opacity-70">{album.artist}</p>
                             </div>
                           </div>
-                          <span className="text-xs">{album.rating}</span>
+                          <span className="text-xs">{album.rating.toFixed(2)}</span>
                         </div>
                       );
                     })}
@@ -444,82 +449,102 @@ export default function Page() {
       >
         ?
       </button>
+      <div className="text-center mb-20">
+        <div className="text-center mb-3">
+          <h1 className="text-2xl font-bold p-1 md:p-2 lg:p-4">
+            RYMdle
+          </h1>
+          <p className="text-xs text-gray-500 mb-20">
+            A daily RYM rating based guessing game - pick the highest rated album!
+          </p>
+          <p className="text-sm text-gray-400 md:p-1 lg:p-2">
+            Round {round + 1}/5
+          </p>
+        </div>
 
-      <div className="text-center">
-        <h1 className="text-2xl font-bold p-1 md:p-2 lg:p-4">
-          RYMdle
-        </h1>
-        <p className="text-xs text-gray-500 pb-17">
-          A daily RYM rating based guessing game - pick the highest rated album!
-        </p>
-        <p className="text-sm text-gray-400 md:p-1 lg:p-2">
-          Round {round + 1}/5
-        </p>
-      </div>
+        <div key={round} className="w-full max-w-md flex flex-col gap-4 mb-15">
+          {currentPair?.map((album, i) => {
+            const isCorrect = i === correct;
+            const isSelected = picks[round] === i;
 
-      <div className="w-full max-w-md flex flex-col gap-4">
-        {currentPair?.map((album, i) => {
-          const state = revealed
-            ? (i === correct ? "correct" : "wrong")
-            : "idle";
+            const backColor =
+              isCorrect
+                ? "bg-green-800"
+                : isSelected
+                ? "bg-red-800"
+                : "bg-gray-900";
 
-          return (
-            <motion.button
-              key={i}
-              onClick={() => pick(i)}
-              disabled={locked || revealed}
-              className="relative h-24"
-              style={{ perspective: 1000 }}
-            >
-              <motion.div
-                animate={{ rotateX: revealed ? 180 : 0 }}
-                transition={
-                  skipAnim
-                    ? { duration: 0 }
-                    : { duration: 0.45 }
-                }
-                className="relative w-full h-full"
-                style={{ transformStyle: "preserve-3d" }}
+            return (
+              <motion.button
+                key={i}
+                onClick={() => pick(i)}
+                disabled={locked || revealed}
+                className="relative h-24"
               >
-                <div
-                  className="absolute inset-0 flex items-center gap-4 p-4 rounded-xl bg-gray-900 hover:bg-gray-800 transition duration-300 ease-in-out text-white cursor-pointer"
-                  style={{ backfaceVisibility: "hidden" }}
-                >
-                  <img src=
-                    {album.cover}
-                    loading="eager"
-                    className="w-16 h-16 rounded object-cover"
-                  />
-                  <div>
-                    <h2 className="text-left text-sm font-semibold">{album.title}</h2>
-                    <p className="text-left text-xs opacity-70">{album.artist}</p>
-                  </div>
-                </div>
+                <motion.div className="relative w-full h-full">
 
-                <div
-                  className={`absolute inset-0 flex flex-col items-center justify-center rounded-xl text-white ${
-                    state === "correct" ? "bg-green-800" : "bg-red-800"
-                  }`}
-                  style={{ transform: "rotateX(180deg)", backfaceVisibility: "hidden" }}
-                >
-                  <p className="text-sm font-semibold">{album.title}</p>
-                  <p className="text-xs opacity-80">{album.artist}</p>
-                  <p className="text-sm mt-1">{album.rating}</p>
-                </div>
-              </motion.div>
-            </motion.button>
-          );
-        })}
+                  {/* FRONT */}
+                  <motion.div className={`absolute inset-0 flex items-center gap-4 p-4 rounded-xl bg-gray-900 hover:bg-gray-800 text-white cursor-pointer`}>
+                    <img
+                      src={album.cover}
+                      loading="eager"
+                      className="w-16 h-16 rounded object-cover"
+                    />
+                    <div>
+                      <h2 className="text-left text-sm font-semibold">{album.title}</h2>
+                      <p className="text-left text-xs opacity-70">{album.artist}</p>
+                    </div>
+                  </motion.div>
+
+                  {/* BACK */}
+                  <motion.div
+                    className={`absolute inset-0 flex items-center gap-4 p-4 rounded-xl text-white ${backColor}`}
+                    initial={{ opacity: 0 }}
+                    animate={revealed ? { opacity: 1 } : { opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    <img
+                      src={album.cover}
+                      loading="eager"
+                      className="w-16 h-16 rounded object-cover"
+                    />
+
+                    <div>
+                      <h2 className="text-left text-sm font-semibold">{album.title}</h2>
+                      <p className="text-left text-xs opacity-70">{album.artist}</p>
+                    </div>
+
+                    <div className="ml-auto text-right">
+                      <p className="mr-2 text-3xl font-mono">
+                        {album.rating.toFixed(2)}
+                      </p>
+                    </div>
+                  </motion.div>
+
+                </motion.div>
+              </motion.button>
+            );
+          })}
+        </div>
+      
+
+        <div className="w-full max-w-xs h-14 mt-4 mx-auto">
+          <motion.button
+            onClick={next}
+            initial={false}
+            animate={{
+              opacity: revealed ? 1 : 0,
+              y: revealed ? 0 : 10
+            }}
+            transition={{ duration: 0.25 }}
+            className="w-full py-3 bg-gray-800 rounded-xl"
+            style={{ pointerEvents: revealed ? "auto" : "none" }}
+          >
+            {(round === 4 && revealed) ? "Finish" : "Next"}
+          </motion.button>
+        </div>
+
       </div>
-
-      <div className="text-center pt-35">
-      </div>
-
-      {revealed && (
-        <button onClick={next} className="w-full max-w-xs py-3 bg-gray-800 hover:bg-gray-700 transition duration-300 ease-in-out text-white rounded-xl cursor-pointer">
-          {round === 4 ? "Finish" : "Next"}
-        </button>
-      )}
 
       {showHelp && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50">
@@ -531,15 +556,15 @@ export default function Page() {
 
             <div className="space-y-3 text-sm text-gray-200 leading-relaxed">
               <p>
-                You will be shown <span className="text-white font-medium">two albums</span> each round.
+                - Pick the album you think has the <span className="text-white font-medium">higher RateYourMusic rating</span>.
               </p>
 
               <p>
-                Pick the one you think has the <span className="text-white font-medium">higher RateYourMusic rating</span>.
+                - There are <span className="text-white font-medium">5 rounds</span>. Try to get the highest score possible.
               </p>
 
               <p>
-                There are <span className="text-white font-medium">5 rounds</span>. Try to get the highest score possible.
+                - Score <span className="text-white font-medium">at least 3 points</span> to win!
               </p>
             </div>
 
@@ -608,7 +633,7 @@ export default function Page() {
                               <p className="text-[10px] opacity-70">{album.artist}</p>
                             </div>
                           </div>
-                          <span className="text-xs">{album.rating}</span>
+                          <span className="text-xs">{album.rating.toFixed(2)}</span>
                         </div>
                       );
                     })}
