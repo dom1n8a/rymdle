@@ -1,6 +1,6 @@
 # RYMdle
 
-RYMdle is a daily music guessing game inspired by other dle / daily games such as songless, scrandle, and worlde. Players are presented with pairs of albums and must choose the one with the higher RateYourMusic rating.
+RYMdle is a daily music guessing game inspired by other dle / daily games such as songless, scrandle, and wordle. Players are presented with pairs of albums and must choose the one with the higher RateYourMusic rating.
 
 ## Overview
 

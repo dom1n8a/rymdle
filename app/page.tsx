@@ -29,7 +29,7 @@ const DAILY_ALBUMS: Album[] = [
   { title: "Bully", artist: "Kanye West", rating: 2.71, cover: "https://coverartarchive.org/release/c59fae72-f604-4953-981e-3b0f42a122b0/front-250" },
   { title: "Vanisher, Horizon Scraper", artist: "Quadeca", rating: 3.63, cover: "https://coverartarchive.org/release/1c25b84b-e51e-47cc-8c88-e01ff28f8740/front-250" },
   { title: "Trinket", artist: "tsubi club", rating: 3.52, cover: "https://coverartarchive.org/release/b4a86d41-e3c1-4192-b08c-05fb034883ac/front-250" },
-  { title: "Love & Ponystep", artist: "Vyley Pony", rating: 3.52, cover: "https://coverartarchive.org/release/4050ce46-a294-4b5e-9f5d-6bc28c96abe2/front-250" },
+  { title: "Love & Ponystep", artist: "Vylet Pony", rating: 3.52, cover: "https://coverartarchive.org/release/4050ce46-a294-4b5e-9f5d-6bc28c96abe2/front-250" },
   { title: "Golliwog", artist: "Billy Woods", rating: 3.86, cover: "https://coverartarchive.org/release/235a2cd7-1a2b-4fa0-9835-021d9f80f403/front-250" },
   { title: "K1", artist: "kmoe", rating: 3.52, cover: "https://coverartarchive.org/release/c2cd1715-79d1-48c7-850c-91b9149b95af/front-250" },
   { title: "The Bends", artist: "Radiohead", rating: 3.89, cover: "https://coverartarchive.org/release/e7e61ec9-9f7d-4235-8dfc-acc2d9b9b1b3/front-250" }
