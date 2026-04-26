@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 
-const DAILY_ID = "2026-04-26";
+const DAILY_ID = "2026-04-27";
 
 type Album = {
   title: string;
@@ -23,16 +23,16 @@ type Stats = {
 };
 
 const DAILY_ALBUMS: Album[] = [
-  { title: "Soundtracks for the Blind", artist: "Swans", rating: 4.16, cover: "https://coverartarchive.org/release/927a2b20-f8d3-4e87-8338-53423c86f6a8/front-250" },
-  { title: "Geogaddi", artist: "Boards of Canada", rating: 4.05, cover: "https://coverartarchive.org/release/90d8a6be-fb90-4161-96cd-2bb96e63a7d1/front-250" },
-  { title: "The Wall", artist: "Pink Floyd", rating: 3.84, cover: "https://coverartarchive.org/release/57af82e7-3bea-4789-ab4f-d2084555c2fb/front-250" },
-  { title: "Physical Graffiti", artist: "Led Zeppelin", rating: 3.97, cover: "https://coverartarchive.org/release/40d746fc-ceab-353c-9a8f-263e2ab6622c/front-250" },
-  { title: "Lift Yr. Skinny Fists Like Antennas to Heaven!", artist: "Godspeed You Black Emperor!", rating: 4.27, cover: "https://coverartarchive.org/release/e3334c4e-9612-43a2-923b-27e33acbd705/front-250" },
-  { title: "Ants From Up There", artist: "Black Country, New Road", rating: 4.04, cover: "https://coverartarchive.org/release/0788e1b9-d989-4a8f-9a9a-244d6338f014/front-250" },
-  { title: "The Epic", artist: "Kamasi Washington", rating: 3.79, cover: "https://coverartarchive.org/release/5bc9909b-a0c8-4d46-aef2-34aa4c07539e/front-250" },
-  { title: "Speakerboxxx / The Love Below", artist: "OutKast", rating: 3.62, cover: "https://coverartarchive.org/release/b71db82a-7d8c-4eab-9e13-99f0eca098fa/front-250" },
-  { title: "Sign '☮︎' the Times", artist: "Prince", rating: 4.04, cover: "https://coverartarchive.org/release/ae60fd4b-4e42-4930-b909-f8bc8dc48e5f/front-250" },
-  { title: "Mellon Collie and the Infinite Sadness", artist: "The Smashing Pumpkins", rating: 3.92, cover: "https://coverartarchive.org/release/bc3a5888-39b4-39d4-a10e-cc1b5309ba6a/front-250" }
+  { title: "Rebel", artist: "EsDeeKid", rating: 3.54, cover: "https://coverartarchive.org/release/f7c66e6a-d6b4-41c0-a770-bc4f30f9d98c/front-250" },
+  { title: "Ö", artist: "Fcukers", rating: 3.39, cover: "https://coverartarchive.org/release/b52384b1-fbbf-4ba3-8a83-cf10969e3b5f/front-250" },
+  { title: "ADL", artist: "Yeat", rating: 2.23, cover: "https://coverartarchive.org/release/3d48435b-eb23-458e-b9dc-4095c18e87f3/front-250" },
+  { title: "Bully", artist: "Kanye West", rating: 2.71, cover: "https://coverartarchive.org/release/c59fae72-f604-4953-981e-3b0f42a122b0/front-250" },
+  { title: "Vanisher, Horizon Scraper", artist: "Quadeca", rating: 3.63, cover: "https://coverartarchive.org/release/1c25b84b-e51e-47cc-8c88-e01ff28f8740/front-250" },
+  { title: "Trinket", artist: "tsubi club", rating: 3.52, cover: "https://coverartarchive.org/release/b4a86d41-e3c1-4192-b08c-05fb034883ac/front-250" },
+  { title: "Love & Ponystep", artist: "Vyley Pony", rating: 3.52, cover: "https://coverartarchive.org/release/4050ce46-a294-4b5e-9f5d-6bc28c96abe2/front-250" },
+  { title: "Golliwog", artist: "Billy Woods", rating: 3.86, cover: "https://coverartarchive.org/release/235a2cd7-1a2b-4fa0-9835-021d9f80f403/front-250" },
+  { title: "K1", artist: "kmoe", rating: 3.52, cover: "https://coverartarchive.org/release/c2cd1715-79d1-48c7-850c-91b9149b95af/front-250" },
+  { title: "The Bends", artist: "Radiohead", rating: 3.89, cover: "https://coverartarchive.org/release/e7e61ec9-9f7d-4235-8dfc-acc2d9b9b1b3/front-250" }
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
