@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 
-const DAILY_ID = "2026-04-27";
+const DAILY_ID = "2026-04-28";
 
 type Album = {
   title: string;
@@ -23,16 +23,16 @@ type Stats = {
 };
 
 const DAILY_ALBUMS: Album[] = [
-  { title: "Rebel", artist: "EsDeeKid", rating: 3.54, cover: "https://coverartarchive.org/release/f7c66e6a-d6b4-41c0-a770-bc4f30f9d98c/front-250" },
-  { title: "Ö", artist: "Fcukers", rating: 3.39, cover: "https://coverartarchive.org/release/b52384b1-fbbf-4ba3-8a83-cf10969e3b5f/front-250" },
-  { title: "ADL", artist: "Yeat", rating: 2.23, cover: "https://coverartarchive.org/release/3d48435b-eb23-458e-b9dc-4095c18e87f3/front-250" },
-  { title: "Bully", artist: "Kanye West", rating: 2.71, cover: "https://coverartarchive.org/release/c59fae72-f604-4953-981e-3b0f42a122b0/front-250" },
-  { title: "Vanisher, Horizon Scraper", artist: "Quadeca", rating: 3.63, cover: "https://coverartarchive.org/release/1c25b84b-e51e-47cc-8c88-e01ff28f8740/front-250" },
-  { title: "Trinket", artist: "tsubi club", rating: 3.52, cover: "https://coverartarchive.org/release/b4a86d41-e3c1-4192-b08c-05fb034883ac/front-250" },
-  { title: "Love & Ponystep", artist: "Vylet Pony", rating: 3.52, cover: "https://coverartarchive.org/release/4050ce46-a294-4b5e-9f5d-6bc28c96abe2/front-250" },
-  { title: "Golliwog", artist: "Billy Woods", rating: 3.86, cover: "https://coverartarchive.org/release/235a2cd7-1a2b-4fa0-9835-021d9f80f403/front-250" },
-  { title: "K1", artist: "kmoe", rating: 3.52, cover: "https://coverartarchive.org/release/c2cd1715-79d1-48c7-850c-91b9149b95af/front-250" },
-  { title: "The Bends", artist: "Radiohead", rating: 3.89, cover: "https://coverartarchive.org/release/e7e61ec9-9f7d-4235-8dfc-acc2d9b9b1b3/front-250" }
+  { title: "The New Sound", artist: "Geordie Greep", rating: 3.96, cover: "https://coverartarchive.org/release/525ea443-3629-4229-ba3b-8e7b24953e16/front-250" },
+  { title: "By the Time I Get to Phoenix", artist: "Injury Reserve", rating: 3.91, cover: "https://coverartarchive.org/release/a919299b-d6da-48bb-b86c-1db938886f73/front-250" },
+  { title: "Atrocity Exhibition", artist: "Danny Brown", rating: 4.14, cover: "https://coverartarchive.org/release/7c594707-8286-447c-9eaf-10728119a703/front-250" },
+  { title: "To Be Kind", artist: "Swans", rating: 4.06, cover: "https://coverartarchive.org/release/79629409-f773-4a88-9c2f-f23a6d716c0f/front-250" },
+  { title: "A Moon Shaped Pool", artist: "Radiohead", rating: 3.97, cover: "https://coverartarchive.org/release/c1e20363-3790-451b-a460-a303e4842fab/front-250" },
+  { title: "KIDS SEE GHOSTS", artist: "KIDS SEE GHOSTS", rating: 3.88, cover: "https://coverartarchive.org/release/6e8842be-fe00-4f18-adb4-d4025204b722/front-250" },
+  { title: "White Pony", artist: "Deftones", rating: 3.99, cover: "https://coverartarchive.org/release/e6fa784f-2ca4-4993-87ed-3574cdc4af77/front-250" },
+  { title: "You Will Never Know Why", artist: "Sweet Trip", rating: 4.06, cover: "https://coverartarchive.org/release/8296365a-ba73-4955-8297-d6b60fc261f7/front-250" },
+  { title: "The Miseducation of Lauryn Hill", artist: "Lauryn Hill", rating: 4.04, cover: "https://coverartarchive.org/release/80789e06-8449-45e7-92ca-d406b95738ed/front-250" },
+  { title: "American Football", artist: "American Football", rating: 3.87, cover: "https://coverartarchive.org/release/3f41825e-5e12-477f-a0f8-76a0a9086297/front-250" }
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
