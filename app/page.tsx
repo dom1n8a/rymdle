@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 
-const DAILY_ID = "2026-04-28";
+const DAILY_ID = "2026-04-29";
 
 type Album = {
   title: string;
@@ -23,16 +23,16 @@ type Stats = {
 };
 
 const DAILY_ALBUMS: Album[] = [
-  { title: "The New Sound", artist: "Geordie Greep", rating: 3.96, cover: "https://coverartarchive.org/release/525ea443-3629-4229-ba3b-8e7b24953e16/front-250" },
-  { title: "By the Time I Get to Phoenix", artist: "Injury Reserve", rating: 3.91, cover: "https://coverartarchive.org/release/a919299b-d6da-48bb-b86c-1db938886f73/front-250" },
-  { title: "Atrocity Exhibition", artist: "Danny Brown", rating: 4.14, cover: "https://coverartarchive.org/release/7c594707-8286-447c-9eaf-10728119a703/front-250" },
-  { title: "To Be Kind", artist: "Swans", rating: 4.06, cover: "https://coverartarchive.org/release/79629409-f773-4a88-9c2f-f23a6d716c0f/front-250" },
-  { title: "A Moon Shaped Pool", artist: "Radiohead", rating: 3.97, cover: "https://coverartarchive.org/release/c1e20363-3790-451b-a460-a303e4842fab/front-250" },
-  { title: "KIDS SEE GHOSTS", artist: "KIDS SEE GHOSTS", rating: 3.88, cover: "https://coverartarchive.org/release/6e8842be-fe00-4f18-adb4-d4025204b722/front-250" },
-  { title: "White Pony", artist: "Deftones", rating: 3.99, cover: "https://coverartarchive.org/release/e6fa784f-2ca4-4993-87ed-3574cdc4af77/front-250" },
-  { title: "You Will Never Know Why", artist: "Sweet Trip", rating: 4.06, cover: "https://coverartarchive.org/release/8296365a-ba73-4955-8297-d6b60fc261f7/front-250" },
-  { title: "The Miseducation of Lauryn Hill", artist: "Lauryn Hill", rating: 4.04, cover: "https://coverartarchive.org/release/80789e06-8449-45e7-92ca-d406b95738ed/front-250" },
-  { title: "American Football", artist: "American Football", rating: 3.87, cover: "https://coverartarchive.org/release/3f41825e-5e12-477f-a0f8-76a0a9086297/front-250" }
+  { title: "An Undying Love for a Burning World", artist: "Neurosis", rating: 3.88, cover: "https://coverartarchive.org/release/55e6db80-da4d-4b86-930f-c09f2ec1b093/front-250" },
+  { title: "The Times They Are A-Changin'", artist: "Bob Dylan", rating: 3.77, cover: "https://coverartarchive.org/release/0442def1-1c4b-40a7-adfb-83ca09e047bb/front-250" },
+  { title: "My Ghosts Go Ghost", artist: "By Storm", rating: 3.78, cover: "https://coverartarchive.org/release/7e8a4c21-d8de-4607-858b-9ef90d84c5dc/front-250" },
+  { title: "Moondance", artist: "Van Morrison", rating: 3.91, cover: "https://coverartarchive.org/release/f5f71b6b-051b-4305-8755-4301ef0ade6a/front-250" },
+  { title: "Love Is Not Enough", artist: "Converge", rating: 3.78, cover: "https://coverartarchive.org/release/0fec265d-d5b1-4428-b2da-e3d47d212522/front-250" },
+  { title: "Deep Purple in Rock", artist: "Deep Purple", rating: 3.88, cover: "https://coverartarchive.org/release/00203d12-52c7-4b78-934a-bbaed3cadca7/front-250" },
+  { title: "My New Band Believe", artist: "My New Band Believe", rating: 3.64, cover: "https://coverartarchive.org/release/7e59e470-050d-4ce1-ac61-8ce5d5e8fc95/front-250" },
+  { title: "The Yes Album", artist: "Yes", rating: 3.88, cover: "https://coverartarchive.org/release/5e4a1673-4c9f-4561-8043-50bbaa64b759/front-250" },
+  { title: "The Mountain", artist: "Gorillaz", rating: 3.49, cover: "https://coverartarchive.org/release/f735389e-b240-4575-8f55-b2d29ca64501/front-250" },
+  { title: "Three Imaginary Boys", artist: "The Cure", rating: 3.39, cover: "https://coverartarchive.org/release/a156c329-1c27-4513-93b2-88978a3bfd17/front-250" }
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
