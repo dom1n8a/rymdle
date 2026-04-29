@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 
-const DAILY_ID = "2026-04-29";
+const DAILY_ID = "2026-04-30";
 
 type Album = {
   title: string;
@@ -23,16 +23,16 @@ type Stats = {
 };
 
 const DAILY_ALBUMS: Album[] = [
-  { title: "An Undying Love for a Burning World", artist: "Neurosis", rating: 3.88, cover: "https://coverartarchive.org/release/55e6db80-da4d-4b86-930f-c09f2ec1b093/front-250" },
-  { title: "The Times They Are A-Changin'", artist: "Bob Dylan", rating: 3.77, cover: "https://coverartarchive.org/release/0442def1-1c4b-40a7-adfb-83ca09e047bb/front-250" },
-  { title: "My Ghosts Go Ghost", artist: "By Storm", rating: 3.78, cover: "https://coverartarchive.org/release/7e8a4c21-d8de-4607-858b-9ef90d84c5dc/front-250" },
-  { title: "Moondance", artist: "Van Morrison", rating: 3.91, cover: "https://coverartarchive.org/release/f5f71b6b-051b-4305-8755-4301ef0ade6a/front-250" },
-  { title: "Love Is Not Enough", artist: "Converge", rating: 3.78, cover: "https://coverartarchive.org/release/0fec265d-d5b1-4428-b2da-e3d47d212522/front-250" },
-  { title: "Deep Purple in Rock", artist: "Deep Purple", rating: 3.88, cover: "https://coverartarchive.org/release/00203d12-52c7-4b78-934a-bbaed3cadca7/front-250" },
-  { title: "My New Band Believe", artist: "My New Band Believe", rating: 3.64, cover: "https://coverartarchive.org/release/7e59e470-050d-4ce1-ac61-8ce5d5e8fc95/front-250" },
-  { title: "The Yes Album", artist: "Yes", rating: 3.88, cover: "https://coverartarchive.org/release/5e4a1673-4c9f-4561-8043-50bbaa64b759/front-250" },
-  { title: "The Mountain", artist: "Gorillaz", rating: 3.49, cover: "https://coverartarchive.org/release/f735389e-b240-4575-8f55-b2d29ca64501/front-250" },
-  { title: "Three Imaginary Boys", artist: "The Cure", rating: 3.39, cover: "https://coverartarchive.org/release/a156c329-1c27-4513-93b2-88978a3bfd17/front-250" }
+  { title: "Dance Tonight! Revolution Tomorrow!", artist: "Orchid", rating: 3.92, cover: "https://coverartarchive.org/release/a8710c62-7ce1-4118-a89a-6880c59e2265/front-250" },
+  { title: "It Takes a Nation of Millions to Hold Us Back", artist: "Public Enemy", rating: 3.95, cover: "https://coverartarchive.org/release/e09d8a24-5df4-4abe-8405-ac96a1625ffd/front-250" },
+  { title: "Fun House", artist: "The Stooges", rating: 4.06, cover: "https://coverartarchive.org/release/9b86b521-2fe7-4777-b119-0bdf296a7c14/front-250" },
+  { title: "Mystic Stylez", artist: "Three-6 Mafia", rating: 3.98, cover: "https://coverartarchive.org/release/b534320e-3346-4cb7-a604-d8410abccddb/front-250" },
+  { title: "The College Dropout", artist: "Kanye West", rating: 4.15, cover: "https://coverartarchive.org/release/da13b81f-7b09-3fb6-b5c9-8551f22c797e/front-250" },
+  { title: "Enter the Wu-Tang (36 Chambers)", artist: "Wu-Tang Clan", rating: 4.22, cover: "https://coverartarchive.org/release/c4494b26-cd1b-4032-9c7f-8ad0d4f7092d/front-250" },
+  { title: "Alice in Chains", artist: "Alice in Chains", rating: 3.75, cover: "https://coverartarchive.org/release/fec88540-48d9-42ae-9441-c37fadb28922/front-250" },
+  { title: "1999", artist: "Joey Bada$$", rating: 3.87, cover: "https://coverartarchive.org/release/a5e0f379-2eab-468a-8aea-1c7653543af9/front-250" },
+  { title: "Metamodern Sounds in Country Music", artist: "Sturgill Simpson", rating: 3.74, cover: "https://coverartarchive.org/release/ff758bcd-3e71-410c-98c4-be50038c419d/front-250" },
+  { title: "Reign in Blood", artist: "Slayer", rating: 3.98, cover: "https://coverartarchive.org/release/b16fa9bc-d4d5-4531-8dac-732f3c2912ac/front-250" }
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
