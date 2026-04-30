@@ -3,8 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-
-const DAILY_ID = "2026-04-30";
+const DAILY_ID = "2026-05-01";
 
 type Album = {
   title: string;
@@ -23,16 +22,16 @@ type Stats = {
 };
 
 const DAILY_ALBUMS: Album[] = [
-  { title: "Dance Tonight! Revolution Tomorrow!", artist: "Orchid", rating: 3.92, cover: "https://coverartarchive.org/release/a8710c62-7ce1-4118-a89a-6880c59e2265/front-250" },
-  { title: "It Takes a Nation of Millions to Hold Us Back", artist: "Public Enemy", rating: 3.95, cover: "https://coverartarchive.org/release/e09d8a24-5df4-4abe-8405-ac96a1625ffd/front-250" },
-  { title: "Fun House", artist: "The Stooges", rating: 4.06, cover: "https://coverartarchive.org/release/9b86b521-2fe7-4777-b119-0bdf296a7c14/front-250" },
-  { title: "Mystic Stylez", artist: "Three-6 Mafia", rating: 3.98, cover: "https://coverartarchive.org/release/b534320e-3346-4cb7-a604-d8410abccddb/front-250" },
-  { title: "The College Dropout", artist: "Kanye West", rating: 4.15, cover: "https://coverartarchive.org/release/da13b81f-7b09-3fb6-b5c9-8551f22c797e/front-250" },
-  { title: "Enter the Wu-Tang (36 Chambers)", artist: "Wu-Tang Clan", rating: 4.22, cover: "https://coverartarchive.org/release/c4494b26-cd1b-4032-9c7f-8ad0d4f7092d/front-250" },
-  { title: "Alice in Chains", artist: "Alice in Chains", rating: 3.75, cover: "https://coverartarchive.org/release/fec88540-48d9-42ae-9441-c37fadb28922/front-250" },
-  { title: "1999", artist: "Joey Bada$$", rating: 3.87, cover: "https://coverartarchive.org/release/a5e0f379-2eab-468a-8aea-1c7653543af9/front-250" },
-  { title: "Metamodern Sounds in Country Music", artist: "Sturgill Simpson", rating: 3.74, cover: "https://coverartarchive.org/release/ff758bcd-3e71-410c-98c4-be50038c419d/front-250" },
-  { title: "Reign in Blood", artist: "Slayer", rating: 3.98, cover: "https://coverartarchive.org/release/b16fa9bc-d4d5-4531-8dac-732f3c2912ac/front-250" }
+  { title: "T.N.T.", artist: "AC/DC", rating: 3.32, cover: "https://coverartarchive.org/release/dc89263f-736f-34f4-ae47-5ae194d27931/front-250" },
+  { title: "Wild Planet", artist: "The B-52's", rating: 3.7, cover: "https://coverartarchive.org/release/0854f6fa-5eca-4f65-b606-fbcb176989e7/front-250" },
+  { title: "Backstage Hologram", artist: "Kuru", rating: 3.46, cover: "https://coverartarchive.org/release/b0fdac71-7756-47de-976a-4ebe0aff0b1b/front-250" },
+  { title: "Wetdream", artist: "Willy Rodriguez", rating: 3.84, cover: "https://coverartarchive.org/release/95bc8cb6-892a-45eb-ac33-f263e04e4e60/front-250" },
+  { title: "My Love Feels All Wrong.", artist: "goreshit", rating: 3.25, cover: "https://coverartarchive.org/release/47a520ce-d3a5-4cd3-8a36-14760864c749/front-250" },
+  { title: "Breakfast in America", artist: "Supertramp", rating: 3.89, cover: "https://coverartarchive.org/release/bd4aac56-37f5-3d39-a650-bd040757e573/front-250" },
+  { title: "The Sensual World", artist: "Kate Bush", rating: 3.8, cover: "https://coverartarchive.org/release/ffb74758-e9a5-41f2-bce6-ae5d2befeb25/front-250" },
+  { title: "Tidal Memory Exo", artist: "Iglooghost", rating: 3.71, cover: "https://coverartarchive.org/release/fdc475f4-69fa-4b41-bc9d-bb515def982c/front-250" },
+  { title: "Hades", artist: "Melanie Martinez", rating: 2.2, cover: "https://coverartarchive.org/release/ce175bbc-c467-4dd7-97e8-4cccb78c830f/front-250" },
+  { title: "All Roads Lead Home", artist: "Central Cee", rating: 2.42, cover: "https://coverartarchive.org/release/a1946eef-1b1b-45e0-bee8-7d5358c5535f/front-250" }
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
