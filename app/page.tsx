@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const DAILY_ID = "2026-05-01";
+const DAILY_ID = "2026-05-02";
 
 type Album = {
   title: string;
@@ -22,16 +22,16 @@ type Stats = {
 };
 
 const DAILY_ALBUMS: Album[] = [
-  { title: "T.N.T.", artist: "AC/DC", rating: 3.32, cover: "https://coverartarchive.org/release/dc89263f-736f-34f4-ae47-5ae194d27931/front-250" },
-  { title: "Wild Planet", artist: "The B-52's", rating: 3.7, cover: "https://coverartarchive.org/release/0854f6fa-5eca-4f65-b606-fbcb176989e7/front-250" },
-  { title: "Backstage Hologram", artist: "Kuru", rating: 3.46, cover: "https://coverartarchive.org/release/b0fdac71-7756-47de-976a-4ebe0aff0b1b/front-250" },
-  { title: "Wetdream", artist: "Willy Rodriguez", rating: 3.84, cover: "https://coverartarchive.org/release/95bc8cb6-892a-45eb-ac33-f263e04e4e60/front-250" },
-  { title: "My Love Feels All Wrong.", artist: "goreshit", rating: 3.25, cover: "https://coverartarchive.org/release/47a520ce-d3a5-4cd3-8a36-14760864c749/front-250" },
-  { title: "Breakfast in America", artist: "Supertramp", rating: 3.89, cover: "https://coverartarchive.org/release/bd4aac56-37f5-3d39-a650-bd040757e573/front-250" },
-  { title: "The Sensual World", artist: "Kate Bush", rating: 3.8, cover: "https://coverartarchive.org/release/ffb74758-e9a5-41f2-bce6-ae5d2befeb25/front-250" },
-  { title: "Tidal Memory Exo", artist: "Iglooghost", rating: 3.71, cover: "https://coverartarchive.org/release/fdc475f4-69fa-4b41-bc9d-bb515def982c/front-250" },
-  { title: "Hades", artist: "Melanie Martinez", rating: 2.2, cover: "https://coverartarchive.org/release/ce175bbc-c467-4dd7-97e8-4cccb78c830f/front-250" },
-  { title: "All Roads Lead Home", artist: "Central Cee", rating: 2.42, cover: "https://coverartarchive.org/release/a1946eef-1b1b-45e0-bee8-7d5358c5535f/front-250" }
+  { title: "Imaginal Disk", artist: "Magdalena Bay", rating: 4.09, cover: "https://coverartarchive.org/release/24e93d85-dc05-4cbd-8da4-753885218550/front-250" },
+  { title: "LP!", artist: "JPEGMAFIA", rating: 4.00, cover: "https://coverartarchive.org/release/9eeb5025-7f5e-4bdb-ac90-075faaf28c2b/front-250" },
+  { title: "The Forever Story", artist: "JID", rating: 4.00, cover: "https://coverartarchive.org/release/5e1db89c-cbe0-417e-8b5b-f17519d863a5/front-250" },
+  { title: "Brat", artist: "Charli XCX", rating: 3.83, cover: "https://coverartarchive.org/release/f0bf83e1-adec-4ce5-9e1b-0e08db01e2b5/front-250" },
+  { title: "Sometimes I Might Be Introvert", artist: "Little Simz", rating: 3.98, cover: "https://coverartarchive.org/release/e36fa449-19f3-46cf-9c24-01a262a6194c/front-250" },
+  { title: "Call Me If You Get Lost", artist: "Tyler, The Creator", rating: 3.77, cover: "https://coverartarchive.org/release/0d8d50e3-6899-4bad-8780-3713f2b87e10/front-250" },
+  { title: "Heavy Metal", artist: "Cameron Winter", rating: 3.97, cover: "https://coverartarchive.org/release/16c36992-20ce-4ac8-8b79-ee6a18a5a34b/front-250" },
+  { title: "For the First Time", artist: "Black Country, New Road", rating: 3.82, cover: "https://coverartarchive.org/release/4a1d71a6-f9f2-4af5-a532-bd52a4fa89e8/front-250" },
+  { title: "Promises", artist: "Floating Points, Pharoah Sanders & London Symphony Orchestra", rating: 3.94, cover: "https://coverartarchive.org/release/3c62ecb0-5ebc-43b3-8cd6-4056d0d3682b/front-250" },
+  { title: "Cavalcade", artist: "black midi", rating: 3.76, cover: "https://coverartarchive.org/release/4287af1d-53c8-40ec-96f0-4caf7f832a4d/front-250" }
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
