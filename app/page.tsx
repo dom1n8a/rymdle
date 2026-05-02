@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const DAILY_ID = "2026-05-02";
+const DAILY_ID = "2026-05-03";
 
 type Album = {
   title: string;
