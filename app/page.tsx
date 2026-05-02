@@ -22,16 +22,16 @@ type Stats = {
 };
 
 const DAILY_ALBUMS: Album[] = [
-  { title: "Imaginal Disk", artist: "Magdalena Bay", rating: 4.09, cover: "https://coverartarchive.org/release/24e93d85-dc05-4cbd-8da4-753885218550/front-250" },
-  { title: "LP!", artist: "JPEGMAFIA", rating: 4.00, cover: "https://coverartarchive.org/release/9eeb5025-7f5e-4bdb-ac90-075faaf28c2b/front-250" },
-  { title: "The Forever Story", artist: "JID", rating: 4.00, cover: "https://coverartarchive.org/release/5e1db89c-cbe0-417e-8b5b-f17519d863a5/front-250" },
-  { title: "Brat", artist: "Charli XCX", rating: 3.83, cover: "https://coverartarchive.org/release/f0bf83e1-adec-4ce5-9e1b-0e08db01e2b5/front-250" },
-  { title: "Sometimes I Might Be Introvert", artist: "Little Simz", rating: 3.98, cover: "https://coverartarchive.org/release/e36fa449-19f3-46cf-9c24-01a262a6194c/front-250" },
-  { title: "Call Me If You Get Lost", artist: "Tyler, The Creator", rating: 3.77, cover: "https://coverartarchive.org/release/0d8d50e3-6899-4bad-8780-3713f2b87e10/front-250" },
-  { title: "Heavy Metal", artist: "Cameron Winter", rating: 3.97, cover: "https://coverartarchive.org/release/16c36992-20ce-4ac8-8b79-ee6a18a5a34b/front-250" },
-  { title: "For the First Time", artist: "Black Country, New Road", rating: 3.82, cover: "https://coverartarchive.org/release/4a1d71a6-f9f2-4af5-a532-bd52a4fa89e8/front-250" },
-  { title: "Promises", artist: "Floating Points, Pharoah Sanders & London Symphony Orchestra", rating: 3.94, cover: "https://coverartarchive.org/release/3c62ecb0-5ebc-43b3-8cd6-4056d0d3682b/front-250" },
-  { title: "Cavalcade", artist: "black midi", rating: 3.76, cover: "https://coverartarchive.org/release/4287af1d-53c8-40ec-96f0-4caf7f832a4d/front-250" }
+  { title: "My Beautiful Dark Twisted Fantasy", artist: "Kanye West", rating: 4.08, cover: "https://coverartarchive.org/release/90bd7e27-d9c3-4b28-9058-0d55f74ab497/front-250" },
+  { title: "★ [Blackstar]", artist: "David Bowie", rating: 4.15, cover: "https://coverartarchive.org/release/8eb5ae9e-ba52-4a8f-8513-822a5ccde819/front-250" },
+  { title: "Carrie & Lowell", artist: "Sufjan Stevens", rating: 4.10, cover: "https://coverartarchive.org/release/87b4a614-d53d-4495-b176-5d4f2bb353e6/front-250" },
+  { title: "Flower Boy", artist: "Tyler, The Creator", rating: 3.90, cover: "https://coverartarchive.org/release/dd09e440-879d-447b-9dfa-8547b369548e/front-250" },
+  { title: "We Got It From Here… Thank You 4 Your Service", artist: "A Tribe Called Quest", rating: 4.05, cover: "https://coverartarchive.org/release/e5c3e417-99b2-473f-9660-b4bb26c8b771/front-250" },
+  { title: "Some Rap Songs", artist: "Earl Sweatshirt", rating: 3.91, cover: "https://coverartarchive.org/release/160aa1c1-e221-435b-a365-ca5f9838f78a/front-250" },
+  { title: "The Life of Pablo", artist: "Kanye West", rating: 3.83, cover: "https://coverartarchive.org/release/99e14f9e-5831-4b2c-b595-531be0f225ea/front-250" },
+  { title: "0", artist: "Ichiko Aoba 青葉市子", rating: 4.01, cover: "https://coverartarchive.org/release/c871f8ed-5ea9-4f7a-b0ae-259b889916d4/front-250" },
+  { title: "This Is Happening", artist: "LCD Soundsystem", rating: 3.94, cover: "https://coverartarchive.org/release/aaec55b5-f2ab-467b-bf48-ae5ce875ac7b/front-250" },
+  { title: "Rodeo", artist: "Travis Scott", rating: 3.86, cover: "https://coverartarchive.org/release/82c96295-8ff5-4612-b16c-c7ed77159c20/front-250" }
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
