@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const DAILY_ID = "2026-05-03";
+const DAILY_ID = "2026-05-04";
 
 type Album = {
   title: string;
@@ -22,16 +22,16 @@ type Stats = {
 };
 
 const DAILY_ALBUMS: Album[] = [
-  { title: "My Beautiful Dark Twisted Fantasy", artist: "Kanye West", rating: 4.08, cover: "https://coverartarchive.org/release/90bd7e27-d9c3-4b28-9058-0d55f74ab497/front-250" },
-  { title: "★ [Blackstar]", artist: "David Bowie", rating: 4.15, cover: "https://coverartarchive.org/release/8eb5ae9e-ba52-4a8f-8513-822a5ccde819/front-250" },
-  { title: "Carrie & Lowell", artist: "Sufjan Stevens", rating: 4.10, cover: "https://coverartarchive.org/release/87b4a614-d53d-4495-b176-5d4f2bb353e6/front-250" },
-  { title: "Flower Boy", artist: "Tyler, The Creator", rating: 3.90, cover: "https://coverartarchive.org/release/dd09e440-879d-447b-9dfa-8547b369548e/front-250" },
-  { title: "We Got It From Here… Thank You 4 Your Service", artist: "A Tribe Called Quest", rating: 4.05, cover: "https://coverartarchive.org/release/e5c3e417-99b2-473f-9660-b4bb26c8b771/front-250" },
-  { title: "Some Rap Songs", artist: "Earl Sweatshirt", rating: 3.91, cover: "https://coverartarchive.org/release/160aa1c1-e221-435b-a365-ca5f9838f78a/front-250" },
-  { title: "The Life of Pablo", artist: "Kanye West", rating: 3.83, cover: "https://coverartarchive.org/release/99e14f9e-5831-4b2c-b595-531be0f225ea/front-250" },
-  { title: "0", artist: "Ichiko Aoba 青葉市子", rating: 4.01, cover: "https://coverartarchive.org/release/c871f8ed-5ea9-4f7a-b0ae-259b889916d4/front-250" },
-  { title: "This Is Happening", artist: "LCD Soundsystem", rating: 3.94, cover: "https://coverartarchive.org/release/aaec55b5-f2ab-467b-bf48-ae5ce875ac7b/front-250" },
-  { title: "Rodeo", artist: "Travis Scott", rating: 3.86, cover: "https://coverartarchive.org/release/82c96295-8ff5-4612-b16c-c7ed77159c20/front-250" }
+  { title: "Vespertine", artist: "Björk", rating: 4.28, cover: "https://coverartarchive.org/release/44f43a79-27f8-4eea-b547-97c7dc204da2/front-250" },
+  { title: "Grace", artist: "Jeff Buckley", rating: 4.13, cover: "https://coverartarchive.org/release/ecba98a1-8831-37ec-8756-5d8e006884a1/front-250" },
+  { title: "How I'm Feeling Now", artist: "Charli XCX", rating: 3.81, cover: "https://coverartarchive.org/release/494b2117-deda-4b63-abce-2f7565cabdd3/front-250" },
+  { title: "Stratosphere", artist: "Duster", rating: 3.97, cover: "https://coverartarchive.org/release/79acc86e-b12b-4a4a-ad7d-7c9f928438a3/front-250" },
+  { title: "6 Feet Beneath the Moon", artist: "King Krule", rating: 3.61, cover: "https://coverartarchive.org/release/d1c4a59b-03b6-4c53-985c-1369d845b1a0/front-250" },
+  { title: "Saturday Night Wrist", artist: "Deftones", rating: 3.74, cover: "https://coverartarchive.org/release/4e4a1484-0285-483a-8a75-684ef1bf9840/front-250" },
+  { title: "I Love You Jennifer B", artist: "Jockstrap", rating: 3.69, cover: "https://coverartarchive.org/release/8abb9383-4302-4134-8351-dc0c31bb85c7/front-250" },
+  { title: "Illmatic", artist: "Nas", rating: 4.27, cover: "https://coverartarchive.org/release/9651aac2-4296-381f-a595-f11e3242c997/front-250" },
+  { title: "Halfway to a Threeway", artist: "Jim O'Rourke", rating: 4.00, cover: "https://coverartarchive.org/release/5ef55317-c42e-491e-a98b-29e2877d8d53/front-250" },
+  { title: "Songs in the Key of Life", artist: "Stevie Wonder", rating: 4.31, cover: "https://coverartarchive.org/release/631ae495-130b-413f-b44f-04ac845eb711/front-250" }
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
