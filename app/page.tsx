@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const DAILY_ID = "2026-05-05";
+const DAILY_ID = "2026-05-06";
 
 type Album = {
   title: string;
@@ -22,16 +22,16 @@ type Stats = {
 };
 
 const DAILY_ALBUMS: Album[] = [
-  { title: "Diamond Eyes", artist: "Deftones", rating: 3.78, cover: "https://coverartarchive.org/release/1e562531-877b-41b6-9d23-75ac4f347867/front-250" },
-  { title: "Caminhos de água", artist: "Kaátaìra", rating: 3.92, cover: "https://coverartarchive.org/release/079088db-55c2-44fa-8cf8-4dcf692e17a7/front-250" },
-  { title: "Cosmogramma", artist: "Flying Lotus", rating: 3.85, cover: "https://coverartarchive.org/release/0e150a3b-919d-44bf-baac-afc897e95a81/front-250" },
-  { title: "Time Heals Everything", artist: "Blu & Exile", rating: 3.64, cover: "https://coverartarchive.org/release/92dcccf4-d778-4d45-b88c-5c5a49c0c53b/front-250" },
-  { title: "Remains", artist: "東京酒吐座 [Tokyo Shoegazer]", rating: 3.60, cover: "https://coverartarchive.org/release/d5ce860c-3b1d-4b8c-907c-a20803a3c388/front-250" },
-  { title: "Nonagon Infinity", artist: "King Gizzard and The Lizard Wizard", rating: 3.92, cover: "https://coverartarchive.org/release/9b8f9c53-dbdf-4aca-af6c-17a23035e20a/front-250" },
-  { title: "Dormitorio", artist: "Giradioses", rating: 3.60, cover: "https://coverartarchive.org/release/186837e1-10cc-4866-ae0c-4e3ec2d7b30d/front-250" },
-  { title: "American Football [LP4]", artist: "American Football", rating: 3.43, cover: "https://coverartarchive.org/release/fa380661-5a3b-44c7-ae56-5546ca2c9ae1/front-250" },
-  { title: "Something Worth Waiting For", artist: "Friko", rating: 3.55, cover: "https://coverartarchive.org/release/8143060a-0221-4367-82c6-e55432961abb/front-250" },
-  { title: "Theft World", artist: "Lip Critic", rating: 3.64, cover: "https://coverartarchive.org/release/b1cc41b9-c33f-4690-9cf6-063bdd0d506a/front-250" }
+  { title: "Alvvays", artist: "Alvvays", rating: 3.70, cover: "https://coverartarchive.org/release/f137548f-500f-421a-82fe-2d0e5ffb5be8/front-250" },
+  { title: "Unearthed", artist: "Johnny Cash", rating: 3.87, cover: "https://coverartarchive.org/release/ce3ddad1-7e96-4263-b893-842de1c76a9c/front-250" },
+  { title: "Ultraviolence", artist: "Lana Del Rey", rating: 3.57, cover: "https://coverartarchive.org/release/b7741cb5-0b0b-4090-bbf9-b8a14202a2ec/front-250" },
+  { title: "4D Country", artist: "Geese", rating: 3.68, cover: "https://coverartarchive.org/release/2c45de61-a95c-47b9-a202-9e571135a700/front-250" },
+  { title: "You Won't Go Before You're Supposed To", artist: "Knocked Loose", rating: 3.64, cover: "https://coverartarchive.org/release/888eea68-bfd5-42c8-be50-1a3b52d64715/front-250" },
+  { title: "Circles", artist: "Mac Miller", rating: 3.84, cover: "https://coverartarchive.org/release/d60d0d06-7200-4e4d-aefd-5deb9e5674a2/front-250" },
+  { title: "Oracular Spectacular", artist: "MGMT", rating: 3.55, cover: "https://coverartarchive.org/release/ce165c24-1edd-3270-81a2-bf7c40db5084/front-250" },
+  { title: "Icky Thump", artist: "The White Stripes", rating: 3.42, cover: "https://coverartarchive.org/release/5e421b3f-1183-42c9-bf5a-c0b623936436/front-250" },
+  { title: "Siamese Dream", artist: "Smashing Pumpkins", rating: 4.02, cover: "https://coverartarchive.org/release/6a4d53a7-70ad-4f6c-af71-a75b0dc42b21/front-250" },
+  { title: "Pinback", artist: "Pinback", rating: 3.82, cover: "https://coverartarchive.org/release/d41c3d12-656b-4bee-bc64-f8e066330ee5/front-250" }
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
