@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const DAILY_ID = "2026-05-06";
+const DAILY_ID = "2026-05-07";
 
 type Album = {
   title: string;
@@ -22,16 +22,16 @@ type Stats = {
 };
 
 const DAILY_ALBUMS: Album[] = [
-  { title: "Alvvays", artist: "Alvvays", rating: 3.70, cover: "https://coverartarchive.org/release/f137548f-500f-421a-82fe-2d0e5ffb5be8/front-250" },
-  { title: "Unearthed", artist: "Johnny Cash", rating: 3.87, cover: "https://coverartarchive.org/release/ce3ddad1-7e96-4263-b893-842de1c76a9c/front-250" },
-  { title: "Ultraviolence", artist: "Lana Del Rey", rating: 3.57, cover: "https://coverartarchive.org/release/b7741cb5-0b0b-4090-bbf9-b8a14202a2ec/front-250" },
-  { title: "4D Country", artist: "Geese", rating: 3.68, cover: "https://coverartarchive.org/release/2c45de61-a95c-47b9-a202-9e571135a700/front-250" },
-  { title: "You Won't Go Before You're Supposed To", artist: "Knocked Loose", rating: 3.64, cover: "https://coverartarchive.org/release/888eea68-bfd5-42c8-be50-1a3b52d64715/front-250" },
-  { title: "Circles", artist: "Mac Miller", rating: 3.84, cover: "https://coverartarchive.org/release/d60d0d06-7200-4e4d-aefd-5deb9e5674a2/front-250" },
-  { title: "Oracular Spectacular", artist: "MGMT", rating: 3.55, cover: "https://coverartarchive.org/release/ce165c24-1edd-3270-81a2-bf7c40db5084/front-250" },
-  { title: "Icky Thump", artist: "The White Stripes", rating: 3.42, cover: "https://coverartarchive.org/release/5e421b3f-1183-42c9-bf5a-c0b623936436/front-250" },
-  { title: "Siamese Dream", artist: "Smashing Pumpkins", rating: 4.02, cover: "https://coverartarchive.org/release/6a4d53a7-70ad-4f6c-af71-a75b0dc42b21/front-250" },
-  { title: "Pinback", artist: "Pinback", rating: 3.82, cover: "https://coverartarchive.org/release/d41c3d12-656b-4bee-bc64-f8e066330ee5/front-250" }
+  { title: "Music for the Masses", artist: "Depeche Mode", rating: 3.85, cover: "https://coverartarchive.org/release/4577ed01-57ad-3826-800b-e0c4d4998611/front-250" },
+  { title: "Lemonade", artist: "Beyoncé", rating: 3.61, cover: "https://coverartarchive.org/release/f457c3e1-0d98-4904-9d9e-a085bc5b232b/front-250" },
+  { title: "Candy-O", artist: "The Cars", rating: 3.52, cover: "https://coverartarchive.org/release/3dad49c9-b067-44b1-b0d5-b28842094e62/front-250" },
+  { title: "Sweet Dreams (Are Made of This)", artist: "Eurythmics", rating: 3.35, cover: "https://coverartarchive.org/release/4527d46a-4f8f-422b-8432-fd79418840af/front-250" },
+  { title: "Version 2.0", artist: "Garbage", rating: 3.59, cover: "https://coverartarchive.org/release/aac347ae-1d35-47c2-8d03-42420443a718/front-250" },
+  { title: "Off the Wall", artist: "Michael Jackson", rating: 3.95, cover: "https://coverartarchive.org/release/6258e39d-bef4-4d5a-a654-440cf4c4c29a/front-250" },
+  { title: "The Fame", artist: "Lady Gaga", rating: 3.30, cover: "https://coverartarchive.org/release/9532def5-5d68-4e31-808a-744c7f5c733f/front-250" },
+  { title: "Kala", artist: "M.I.A.", rating: 3.67, cover: "https://coverartarchive.org/release/60c1e000-91a8-4749-bd21-bebcbcbea847/front-250" },
+  { title: "Sound of Silver", artist: "LCD Soundsystem", rating: 3.96, cover: "https://coverartarchive.org/release/59ce7d03-4fa5-4676-b042-25d0e61f4e8d/front-250" },
+  { title: "Remain in Light", artist: "Talking Heads", rating: 4.26, cover: "https://coverartarchive.org/release/f57dbbd3-93b8-487a-a596-761bf838a498/front-250" }
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
