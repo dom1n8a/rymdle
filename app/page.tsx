@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const DAILY_ID = "2026-05-07";
+const DAILY_ID = "2026-05-08";
 
 type Album = {
   title: string;
@@ -22,16 +22,16 @@ type Stats = {
 };
 
 const DAILY_ALBUMS: Album[] = [
-  { title: "Music for the Masses", artist: "Depeche Mode", rating: 3.85, cover: "https://coverartarchive.org/release/4577ed01-57ad-3826-800b-e0c4d4998611/front-250" },
-  { title: "Lemonade", artist: "Beyoncé", rating: 3.61, cover: "https://coverartarchive.org/release/f457c3e1-0d98-4904-9d9e-a085bc5b232b/front-250" },
-  { title: "Candy-O", artist: "The Cars", rating: 3.52, cover: "https://coverartarchive.org/release/3dad49c9-b067-44b1-b0d5-b28842094e62/front-250" },
-  { title: "Sweet Dreams (Are Made of This)", artist: "Eurythmics", rating: 3.35, cover: "https://coverartarchive.org/release/4527d46a-4f8f-422b-8432-fd79418840af/front-250" },
-  { title: "Version 2.0", artist: "Garbage", rating: 3.59, cover: "https://coverartarchive.org/release/aac347ae-1d35-47c2-8d03-42420443a718/front-250" },
-  { title: "Off the Wall", artist: "Michael Jackson", rating: 3.95, cover: "https://coverartarchive.org/release/6258e39d-bef4-4d5a-a654-440cf4c4c29a/front-250" },
-  { title: "The Fame", artist: "Lady Gaga", rating: 3.30, cover: "https://coverartarchive.org/release/9532def5-5d68-4e31-808a-744c7f5c733f/front-250" },
-  { title: "Kala", artist: "M.I.A.", rating: 3.67, cover: "https://coverartarchive.org/release/60c1e000-91a8-4749-bd21-bebcbcbea847/front-250" },
-  { title: "Sound of Silver", artist: "LCD Soundsystem", rating: 3.96, cover: "https://coverartarchive.org/release/59ce7d03-4fa5-4676-b042-25d0e61f4e8d/front-250" },
-  { title: "Remain in Light", artist: "Talking Heads", rating: 4.26, cover: "https://coverartarchive.org/release/f57dbbd3-93b8-487a-a596-761bf838a498/front-250" }
+  { title: "When the Pawn", artist: "Fiona Apple", rating: 4.11, cover: "https://coverartarchive.org/release/573c047f-ad0f-36fd-8bf4-218249634cc7/front-250" },
+  { title: "A Hard Day's Night", artist: "The Beatles", rating: 3.59, cover: "https://coverartarchive.org/release/0884a16b-7fa3-43c6-9645-6807936a4bc1/front-250" },
+  { title: "Sweetheart of the Rodeo", artist: "The Byrds", rating: 3.60, cover: "https://coverartarchive.org/release/fabe6eae-107f-4369-a70a-63d840051218/front-250" },
+  { title: "Back From the Dead 2", artist: "Chief Keef", rating: 3.77, cover: "https://coverartarchive.org/release/514d65fd-22fb-4bf4-9856-3bc4d466f567/front-250" },
+  { title: "Destroy the Machines", artist: "Earth Crisis", rating: 3.56, cover: "https://coverartarchive.org/release/c3a84025-0ac0-3314-bf87-ad5555bafcb3/front-250" },
+  { title: "Onward to Golgotha", artist: "Incantation", rating: 3.91, cover: "https://coverartarchive.org/release/b0ec8e17-413c-435a-a45c-f8ad606c6a7f/front-250" },
+  { title: "Minor Threat", artist: "Minor Threat", rating: 3.90, cover: "https://coverartarchive.org/release/724eee1e-69b9-42c7-a10e-ed9f1fc2aa95/front-250" },
+  { title: "Harmony Corruption", artist: "Napalm Death", rating: 3.63, cover: "https://coverartarchive.org/release/1e16da6c-702a-49ed-8d20-f6c233e150a8/front-250" },
+  { title: "Repeater", artist: "Fugazi", rating: 3.90, cover: "https://coverartarchive.org/release/37e6a462-1417-45dc-9d88-4ef9aff4bc19/front-250" },
+  { title: "Songs for Swingin' Lovers!", artist: "Frank Sinatra", rating: 3.61, cover: "https://coverartarchive.org/release/6d0333e7-fc40-4207-a702-b4c3847de809/front-250" }
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
