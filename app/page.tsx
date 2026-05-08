@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const DAILY_ID = "2026-05-08";
+const DAILY_ID = "2026-05-09";
 
 type Album = {
   title: string;
@@ -22,16 +22,16 @@ type Stats = {
 };
 
 const DAILY_ALBUMS: Album[] = [
-  { title: "When the Pawn", artist: "Fiona Apple", rating: 4.11, cover: "https://coverartarchive.org/release/573c047f-ad0f-36fd-8bf4-218249634cc7/front-250" },
-  { title: "A Hard Day's Night", artist: "The Beatles", rating: 3.59, cover: "https://coverartarchive.org/release/0884a16b-7fa3-43c6-9645-6807936a4bc1/front-250" },
-  { title: "Sweetheart of the Rodeo", artist: "The Byrds", rating: 3.60, cover: "https://coverartarchive.org/release/fabe6eae-107f-4369-a70a-63d840051218/front-250" },
-  { title: "Back From the Dead 2", artist: "Chief Keef", rating: 3.77, cover: "https://coverartarchive.org/release/514d65fd-22fb-4bf4-9856-3bc4d466f567/front-250" },
-  { title: "Destroy the Machines", artist: "Earth Crisis", rating: 3.56, cover: "https://coverartarchive.org/release/c3a84025-0ac0-3314-bf87-ad5555bafcb3/front-250" },
-  { title: "Onward to Golgotha", artist: "Incantation", rating: 3.91, cover: "https://coverartarchive.org/release/b0ec8e17-413c-435a-a45c-f8ad606c6a7f/front-250" },
-  { title: "Minor Threat", artist: "Minor Threat", rating: 3.90, cover: "https://coverartarchive.org/release/724eee1e-69b9-42c7-a10e-ed9f1fc2aa95/front-250" },
-  { title: "Harmony Corruption", artist: "Napalm Death", rating: 3.63, cover: "https://coverartarchive.org/release/1e16da6c-702a-49ed-8d20-f6c233e150a8/front-250" },
-  { title: "Repeater", artist: "Fugazi", rating: 3.90, cover: "https://coverartarchive.org/release/37e6a462-1417-45dc-9d88-4ef9aff4bc19/front-250" },
-  { title: "Songs for Swingin' Lovers!", artist: "Frank Sinatra", rating: 3.61, cover: "https://coverartarchive.org/release/6d0333e7-fc40-4207-a702-b4c3847de809/front-250" }
+  { title: "Twin Peaks", artist: "Angelo Badalamenti", rating: 4.20, cover: "https://coverartarchive.org/release/6fd8844f-2a1e-4fef-87ab-086298494c22/front-250" },
+  { title: "London Calling", artist: "The Clash", rating: 4.01, cover: "https://coverartarchive.org/release/b35ceaef-ce15-425f-8cf0-90c4e72c10fc/front-250" },
+  { title: "Boston", artist: "Boston", rating: 3.64, cover: "https://coverartarchive.org/release/e106c67c-5931-4a84-aa97-18516c5a94ff/front-250" },
+  {  title: "American Idiot", artist: "Green Day", rating: 3.41, cover: "https://coverartarchive.org/release/dd7cbde9-bffc-467f-8a39-bda4ea2d0633/front-250" },
+  { title: "Minecraft: Volume Beta", artist: "C418", rating: 4.14, cover: "https://coverartarchive.org/release/61f97810-8192-40db-9dc1-bafb6d61690f/front-250" },
+  { title: "Revolver", artist: "The Beatles", rating: 4.24, cover: "https://coverartarchive.org/release/bc3ac28d-bffd-49a1-bb1b-db596e71ea6d/front-250" },
+  { title: "Led Zeppelin", artist: "Led Zeppelin", rating: 3.92, cover: "https://coverartarchive.org/release/49a37840-8359-4fe2-957e-fafac8461ba5/front-250" },
+  { title: "Meddle", artist: "Pink Floyd", rating: 3.98, cover: "https://coverartarchive.org/release/8900bd3d-704d-4f04-8398-b2fbff8e4e0b/front-250" },
+  { title: "Queen II", artist: "Queen", rating: 3.58, cover: "https://coverartarchive.org/release/659fc53a-2139-4a94-84c7-b9e2a45f6ed5/front-250" },
+  { title: "The Mollusk", artist: "Ween", rating: 3.99, cover: "https://coverartarchive.org/release/3a11a150-8bd4-47c9-ba07-1faa2eb47542/front-250" }
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
