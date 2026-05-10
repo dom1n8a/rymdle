@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const DAILY_ID = "2026-05-09";
+const DAILY_ID = "2026-05-11";
 
 type Album = {
   title: string;
@@ -22,16 +22,16 @@ type Stats = {
 };
 
 const DAILY_ALBUMS: Album[] = [
-  { title: "Twin Peaks", artist: "Angelo Badalamenti", rating: 4.20, cover: "https://coverartarchive.org/release/6fd8844f-2a1e-4fef-87ab-086298494c22/front-250" },
-  { title: "London Calling", artist: "The Clash", rating: 4.01, cover: "https://coverartarchive.org/release/b35ceaef-ce15-425f-8cf0-90c4e72c10fc/front-250" },
-  { title: "Boston", artist: "Boston", rating: 3.64, cover: "https://coverartarchive.org/release/e106c67c-5931-4a84-aa97-18516c5a94ff/front-250" },
-  {  title: "American Idiot", artist: "Green Day", rating: 3.41, cover: "https://coverartarchive.org/release/dd7cbde9-bffc-467f-8a39-bda4ea2d0633/front-250" },
-  { title: "Minecraft: Volume Beta", artist: "C418", rating: 4.14, cover: "https://coverartarchive.org/release/61f97810-8192-40db-9dc1-bafb6d61690f/front-250" },
-  { title: "Revolver", artist: "The Beatles", rating: 4.24, cover: "https://coverartarchive.org/release/bc3ac28d-bffd-49a1-bb1b-db596e71ea6d/front-250" },
-  { title: "Led Zeppelin", artist: "Led Zeppelin", rating: 3.92, cover: "https://coverartarchive.org/release/49a37840-8359-4fe2-957e-fafac8461ba5/front-250" },
-  { title: "Meddle", artist: "Pink Floyd", rating: 3.98, cover: "https://coverartarchive.org/release/8900bd3d-704d-4f04-8398-b2fbff8e4e0b/front-250" },
-  { title: "Queen II", artist: "Queen", rating: 3.58, cover: "https://coverartarchive.org/release/659fc53a-2139-4a94-84c7-b9e2a45f6ed5/front-250" },
-  { title: "The Mollusk", artist: "Ween", rating: 3.99, cover: "https://coverartarchive.org/release/3a11a150-8bd4-47c9-ba07-1faa2eb47542/front-250" }
+  { title: "Never Again Pt. 2", artist: "Black Country, New Road", rating: 3.56, cover: "https://coverartarchive.org/release/529e3e56-5a77-4e76-9d0e-baa6d50458a6/front-250" },
+  { title: "Ceres & Calypso in the Deep Time", artist: "Candy Claws", rating: 3.87, cover: "https://coverartarchive.org/release/78c7c1e0-2157-4ff0-b33c-b3697fe05f0e/front-250" },
+  { title: "PUP", artist: "PUP", rating: 3.54, cover: "https://coverartarchive.org/release/bb3bab64-382a-43b3-8e9e-985cbc263dfe/front-250" },
+  { title: "Worry.", artist: "Jeff Rosenstock", rating: 3.91, cover: "https://coverartarchive.org/release/6b194b72-3a3c-46e7-98be-6ac9ecd4150e/front-250" },
+  { title: "Sawayama", artist: "Rina Sawayama", rating: 3.63, cover: "https://coverartarchive.org/release/fe290c1d-594a-4fd2-b68c-60d2a0dc85da/front-250" },
+  { title: "Adults!!!... Smart!!! Shithammered!!! And Excited by Nothing!!!!!!!", artist: "Bomb the Music Industry!", rating: 3.91, cover: "https://coverartarchive.org/release/e02c387e-5bd2-405a-b450-d2ebed0c45da/front-250" },
+  { title: "The First Glass Beach Album", artist: "glass beach", rating: 3.54, cover: "https://coverartarchive.org/release/1d50f075-cb08-456a-801f-6f92586840b2/front-250" },
+  { title: "Black British Music (2025)", artist: "Jim Legxacy", rating: 3.64, cover: "https://coverartarchive.org/release/5a986163-7200-44f2-9844-d406aa3c2d6a/front-250" },
+  { title: "Frailty", artist: "Jane Remover", rating: 3.72, cover: "https://coverartarchive.org/release/bd953c23-8c62-4b34-a196-335261efe242/front-250" },
+  { title: "Yankee Hotel Foxtrot", artist: "Wilco", rating: 3.96, cover: "https://coverartarchive.org/release/54ba28b7-f49a-47ec-8888-679ac0044a06/front-250" }
 ];
 
 function makePairs(albums: Album[]): [Album, Album][] {
