@@ -257,10 +257,10 @@ export default function Page() {
 
         <div className="text-center">
           <h1 className="text-2xl font-bold p-1 md:p-2 lg:p-4">
-            RYMdle
+            Thank you for playing!
           </h1>
           <p className="text-xs text-gray-500 p-1">
-            A daily RYM rating based guessing game - pick the highest rated album!
+            RYMdle is sadly no longer being maintained, please message dom1n8a on discord if you have any inquiries.
           </p>
         </div>
 
